@@ -1,0 +1,14 @@
+img {
+    height: 40%;
+    width: 40%;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: larger;
+}

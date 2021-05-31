@@ -1,0 +1,83 @@
+/* Sidebar nav vertical */ 
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+      padding: 0;
+      max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+      float: none;
+      display: block;
+    } 
+    .sidebar-nav .navbar li {
+      float: none;
+      display: block;
+    }
+    .sidebar-nav .navbar li a {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+
+.imgbtn {
+    height: 30px;
+    width: 30px;
+}
+
+/* Component styles */
+
+img {
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+}
+
+p {
+  font-family: sans-serif;
+  color: #473a40;
+  font-style: unset;
+}
+
+.avatar {
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-profile {
+  position: relative;
+}
+
+.add-photo {
+  position: absolute;
+  z-index: 10;
+  top: 145px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex--center {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.full {
+  width: 100%;
+}
+
+.spinneradmin {
+margin-top: 220px;
+margin-bottom: 220px;
+width: 50px;
+height: 50px;
+}

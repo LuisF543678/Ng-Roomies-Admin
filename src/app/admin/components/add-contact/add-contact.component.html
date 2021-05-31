@@ -1,0 +1,24 @@
+<article class="row">
+    <button mat-icon-button type="button" color="primary" (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <form [formGroup]="group" (ngSubmit)="submitContact()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Telefóno, celular, twitter"> 
+            <mat-hint>Obligatorio</mat-hint>
+            <div *ngIf="group.get('name')?.errors && group.get('name')?.touched">
+                <mat-error *ngIf="group.get('name')?.hasError('required')">El nombre es obligatorio.</mat-error>
+            </div>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Valor</mat-label>
+            <input type="text" matInput formControlName="contactValue" placeholder="+522383834383">
+            <mat-hint>Obligatorio</mat-hint>
+            <div *ngIf="group.get('contactValue')?.errors && group.get('contactValue')?.touched">
+                <mat-error *ngIf="group.get('contactValue')?.hasError('required')">El nombre es obligatorio.</mat-error>
+            </div>
+        </mat-form-field>
+        <button mat-button type="submit" color="primary">Agregar contacto</button>
+    </form>
+</article>

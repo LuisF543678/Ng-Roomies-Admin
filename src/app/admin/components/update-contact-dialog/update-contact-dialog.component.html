@@ -1,0 +1,24 @@
+<h3 mat-dialog-title>Modificar información de contacto</h3>
+<mat-dialog-content>
+    <form [formGroup]="group" (ngSubmit)="sendContact()">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput formControlName="name">
+                <ng-container *ngIf="group.get('name')?.errors && group.get('name')?.touched">
+                    <mat-error *ngIf="group.get('name')?.hasError('required')">El nombre es requerido.</mat-error>
+                </ng-container>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Valor</mat-label>
+                <input type="text" matInput formControlName="value">
+                <ng-container *ngIf="group.get('value')?.errors && group.get('value')?.touched">
+                    <mat-error *ngIf="group.get('value')?.hasError('required')">El valor es requerido.</mat-error>
+                </ng-container>
+            </mat-form-field>
+        </p>
+        <button mat-raised-button color="primary">Actualizar</button>
+    </form>
+</mat-dialog-content>

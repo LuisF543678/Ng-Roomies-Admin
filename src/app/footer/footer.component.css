@@ -1,0 +1,12 @@
+footer {
+    background-color:#180736 !important;
+}
+
+h5, a, ul, p {
+    color:#f8f9fa;
+}
+
+img {
+    height: 100px;
+    width: 250px;
+}

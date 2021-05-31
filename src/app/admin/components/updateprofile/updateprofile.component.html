@@ -1,0 +1,47 @@
+<h3 mat-dialog-title>Modificar perfíl</h3>
+<article mat-dialog-content>
+    <form [formGroup]="group" (ngSubmit)="updateProfile()">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="username" placeholder="example@example.com">
+                <mat-hint>Obligatorio</mat-hint>
+                <p *ngIf="group.get('username')?.errors && group.get('username')?.touched">
+                    <mat-error *ngIf="group.get('username')?.hasError('required')">El campo es obligatorio</mat-error>
+                    <mat-error *ngIf="group.get('username')?.hasError('email')">El correo no es válido</mat-error>
+                </p>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" placeholder="John">
+                <mat-hint>Obligatorio</mat-hint>
+                <p *ngIf="group.get('name')?.errors && group.get('name')?.touched">
+                    <mat-error *ngIf="group.get('name')?.hasError('required')">El campo es obligatorio</mat-error>
+                </p>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Apellido paterno</mat-label>
+                <input matInput formControlName="fatherSurname" placeholder="Doe">
+                <mat-hint>Obligatorio</mat-hint>
+                <p *ngIf="group.get('fatherSurname')?.errors && group.get('fatherSurname')?.touched">
+                    <mat-error *ngIf="group.get('fatherSurname')?.hasError('required')">El campo es obligatorio</mat-error>
+                </p>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Apellido materno</mat-label>
+                <input matInput formControlName="motherSurname" placeholder="Smith">
+                <mat-hint>Obligatorio</mat-hint>
+                <p *ngIf="group.get('motherSurname')?.errors && group.get('motherSurname')?.touched">
+                    <mat-error *ngIf="group.get('motherSurname')?.hasError('required')">El campo es obligatorio</mat-error>
+                </p>
+            </mat-form-field>
+        </p>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+</article>

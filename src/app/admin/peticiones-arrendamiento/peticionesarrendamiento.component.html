@@ -1,0 +1,150 @@
+<div *ngIf="!loader">
+    <div class="d-flex flex-row justify-content-center">
+        <img class="spinneradmin" src="https://herpasa.com/img/throbber.gif" alt="">
+    </div>
+</div>
+
+<div class="container">
+    <br><br><br>
+    <div *ngIf="loader" class="row">
+        <div class="col-sm-3">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button class="navbar-toggler-icon" type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".sidebar-navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <img class="imgbtn" src="https://image.flaticon.com/icons/png/512/40/40105.png" alt="">
+                        </button>
+                        <span class="visible-xs navbar-brand">Admin</span>
+                    </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a routerLink="../estadisticas">Ver Estadísticas</a></li>
+                            <li><a routerLink="../peticiones-arrendamientos">Peticiones de arrendamiento</a></li>
+                            <li><a routerLink="../gestion-arrendados">Gestión de arrendados</a></li>
+                            <li><a routerLink="../gestion-reportes">Gestión de reportes</a></li>
+                            <li><a routerLink="../lista-arrendados">Listado de arrendados</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse routerLink="../user-details"-->
+                    <br>
+
+                    <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
+                    <button class="btn btn-danger return-menu" routerLink="/" (click)=" signOff()"><i
+                            class="fas fa-sign-out-alt"></i>Cerrar
+                        session</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <br>
+            <h5>Peticiones de arrendamiento</h5>
+            <br>
+            <div class="text-center" *ngFor="let request of requests_Accommodation">
+                <p>{{request.User.user_name}}</p>
+            </div>
+            <div class="row">
+                <aside class="col-sm-4">
+                    <div class="card">
+                        <article class="card-body">
+                            <form>
+                                <a class="float-right btn btn-info" routerLink="../user-details">Ver perfil</a>
+                                <div class="form-group">
+                                    <p>Nombre: </p>
+                                    <label>Alojamiento solicitado:</label>
+                                    <p>El mas grande</p>
+                                    <div class="">
+                                        <a href="" class="float-right btn btn-danger btn-block" data-toggle="modal"
+                                            data-target="#exampleModal" data-whatever="@getbootstrap">Rechazar</a>
+                                        <br>
+                                        <button type="submit" class="btn btn-success btn-block"> Aceptar </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+
+                </aside>
+                <aside class="col-sm-4">
+
+                    <div class="card">
+                        <article class="card-body">
+                            <form>
+                                <a class="float-right btn btn-info" routerLink="../user-details">Ver perfil</a>
+                                <div class="form-group">
+                                    <p>Nombre: </p>
+                                    <label>Alojamiento solicitado:</label>
+                                    <p>El mas grande</p>
+                                    <div class="">
+                                        <a href="" class="float-right btn btn-danger btn-block" data-toggle="modal"
+                                            data-target="#exampleModal" data-whatever="@getbootstrap">Rechazar</a>
+                                        <br>
+                                        <button type="submit" class="btn btn-success btn-block"> Aceptar </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+
+                </aside>
+                <aside class="col-sm-4">
+
+                    <div class="card">
+                        <article class="card-body">
+                            <form>
+                                <a class="float-right btn btn-info" routerLink="../user-details">Ver perfil</a>
+                                <div class="form-group">
+                                    <p>Nombre: </p>
+                                    <label>Alojamiento solicitado:</label>
+                                    <p>El mas grande</p>
+                                    <div class="">
+                                        <a href="" class="float-right btn btn-danger btn-block" data-toggle="modal"
+                                            data-target="#exampleModal" data-whatever="@getbootstrap">Rechazar</a>
+                                        <br>
+                                        <button type="submit" class="btn btn-success btn-block"> Aceptar </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+
+                    <!--  <div class="text-center" *ngFor="let request of requests_Accommodation">
+                        <p>{{}}</p>
+                    </div> -->
+
+                </aside>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Motivo del rechazo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Mensaje</label>
+                             <textarea class="form-control" id="message-text"></textarea> 
+                           
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button [disabled]="!messageform.valid" type="button" class="btn btn-info">Enviar mensaje</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

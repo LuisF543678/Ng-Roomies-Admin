@@ -1,0 +1,104 @@
+<div *ngIf="!loader">
+    <div class="d-flex flex-row justify-content-center">
+        <img class="spinneradmin" src="https://herpasa.com/img/throbber.gif" alt="">
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <br>
+        <br>
+        <div *ngIf="loader" class="row">
+            <div class="col-sm-3">
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button class="navbar-toggler-icon" type="button" class="navbar-toggle"
+                                data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <img class="imgbtn" src="https://image.flaticon.com/icons/png/512/40/40105.png" alt="">
+                            </button>
+                            <span class="visible-xs navbar-brand">Admin</span>
+                        </div>
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a routerLink="../estadisticas">Ver Estadísticas</a></li>
+                                <li><a routerLink="../peticiones-arrendamientos">Peticiones de arrendamiento</a></li>
+                                <li><a routerLink="../gestion-arrendados">Gestión de arrendados</a></li>
+                                <li><a routerLink="../gestion-reportes">Gestión de reportes</a></li>
+                                <li><a routerLink="../lista-arrendados">Listado de arrendados</a></li>
+                                <li><a routerLink="../profile">Ver perfil</a></li>
+                            </ul>
+                        </div>
+                        <br>
+                        <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
+                    <button class="btn btn-danger return-menu" routerLink="/" (click)=" signOff()"><i
+                        class="fas fa-sign-out-alt"></i>Cerrar
+                      session</button>
+
+                        <!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9" *ngIf="user">
+                <br>
+                <div class="card mx-auto center">
+                    <figure class="img-profile">
+                        <img *ngIf="user.ProfileImage;else imgDefault" class="img-thumbnail avatar"
+                            [src]="user.ProfileImage" alt="profile_img">
+                        <ng-template #imgDefault>
+                            <img class="img-thumbnail avatar"
+                                src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg"
+                                alt="profile_img">
+                        </ng-template>
+                    </figure>
+                    <button mat-fab color="primary" class="add-photo" (click)="openPhotoDialog()">
+                        <mat-icon>add_a_photo</mat-icon>
+                    </button>
+                    <div class="card-body">
+                        <h3>Administrador</h3>
+                        <p class="card-text">{{user.name}} {{user.father_surname}} {{user.mother_surname}}</p>
+                    </div>
+                    <ng-container>
+                        <div class="flex--center">
+                            <h3>Medios de contacto</h3>
+                            <button mat-button color="primary" (click)="displayOrHide(true)">
+                                Agregar contacto
+                            </button>
+                        </div>
+                        <ul class="list-group full" *ngIf="lessee && lessee.Contacts.length > 0">
+                            <li class="list-group-item flex" *ngFor="let contact of lessee.Contacts">
+                                <span>{{contact.Name}}: {{contact.Value}}</span>
+                                <div>
+                                    <button mat-icon-button color="accent" (click)="openUpdateDialog(contact)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="openDeleteDialog(contact)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                        <app-add-contact *ngIf="add" (closeForm)="displayOrHide($event)" [id]="lessee.ID">
+                        </app-add-contact>
+                    </ng-container>
+                    <div class="mx-auto">
+                        <br>
+                        <div class="btn-group">
+                            <div>
+                                <button type="button" class="btn btn-primary btn-block" (click)="openDialog()">Modificar
+                                    perfíl</button>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

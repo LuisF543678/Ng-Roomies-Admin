@@ -1,0 +1,111 @@
+.card {
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+	transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+	padding: 14px 80px 18px 36px;
+	cursor: pointer;
+}
+
+.card:hover {
+	transform: scale(1.05);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.card h3 {
+	font-weight: 600;
+}
+
+.card img {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	max-height: 120px;
+}
+
+.card-1 {
+	background-image: url(https://docente.santateresaie.edu.co/images/perfil.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.card-2 {
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Circle-icons-browser.svg/600px-Circle-icons-browser.svg.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.card-3 {
+	background-image: url(https://escuderiadelmarmol.net/wp-content/uploads/2016/10/lista.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.card-4 {
+	background-image: url(https://cdn3.iconfinder.com/data/icons/reports-and-analytics-1/512/17-512.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.card-5 {
+	background-image: url(https://images.vexels.com/media/users/3/153781/isolated/preview/53b5a3e15f663bd6129aadbe940a10c7-icono-de-trazo-de-color-de-lupa-by-vexels.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.card-6 {
+	background-image: url(https://www.wsta.org/wp-content/uploads/2020/03/008-teamwork-3.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: 80px;
+	border-left: .5rem solid #4e73df!important;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.cards-contend {
+    margin-top: 49px;
+    margin-bottom: 59px;
+}
+
+p {
+    font-family: sans-serif;
+    color: #473a40;
+}
+
+.far {
+    color: #180736;
+}
+
+@media(max-width: 990px) {
+	.card {
+		margin: 20px;
+	}
+}
+
+.spinneradmin {
+	margin-top: 220px;
+	margin-bottom: 220px;
+	width: 50px;
+	height: 50px;
+  }

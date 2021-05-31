@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Restablece tu contraseña</h5>
+
+         <div class="text-center">
+          <p>Ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña.</p>
+         </div>
+          <img src="https://media0.giphy.com/media/kHfuqgCYExmQOC3qBb/giphy.gif" alt="" class="rounded mx-auto d-block">
+            <form class="form-signin" [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+            <div class="form-label-group">
+              <input type="email" formControlName="email" class="form-control" placeholder="Ingresa tu correo" required
+                autofocus>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" data-toggle="modal"
+              data-target="#exampleModalCenter">Enviar código</button>
+          </form>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="link-create"><a href="">¡Crea una cuenta!</a>
+        </div>
+        <div class="link-login"><a href="">¿Ya tienes una cuenta? ¡Accede!</a>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </div>
+</div>
+
+<!-- Modal
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Se ha enviado un codigo de verificacion, revisa tu correo
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div *ngIf="data!== undefined; else elseBlock">
+          Se ha enviado el codigo de verificacion a<br>
+          <strong>{{resetForm.value.email}}</strong>
+        </div>
+        <ng-template #elseBlock>
+          <div class="text-center">
+            <img class="waralert" src="https://media.tenor.com/images/70584b7a6c3869052d61ae59dcbf9632/tenor.gif"
+              alt="">
+            <h4 class="alert-heading text-primary">Oh no! el correo que enviaste es invalido </h4>
+
+          </div>
+        </ng-template>
+
+      </div>
+      <div class="modal-footer">
+        <a href="/webcreateorreset/reset-password">
+          <button type="button" class="btn btn-primary btn-lg">Cerrar</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

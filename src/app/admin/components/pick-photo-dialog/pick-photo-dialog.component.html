@@ -1,0 +1,8 @@
+<h3 mat-dialog-title>Sube una foto de tu ordenador</h3>
+<article mat-dialog-content>
+    <input type="file" (change)="pickFile($event)">
+    <button mat-button color="primary" (click)="uploadImage()">Subir foto</button>
+    <ng-container *ngIf="upload.file">
+        <img [src]="upload.file" alt="img_preview" class="img-fluid">
+    </ng-container>
+</article>
