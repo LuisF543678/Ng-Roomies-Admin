@@ -16,16 +16,16 @@ const routes: Routes = [
     path: 'menu', component: MenuComponent
   },
   {
-    path: 'estadisticas', component: EstadisticasComponent 
+    path: 'estadisticas', component: EstadisticasComponent
   },
   {
-    path: 'gestion-arrendados', component: GestionarrendadosComponent 
+    path: 'gestion-arrendados', component: GestionarrendadosComponent
   },
   {
-    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent 
+    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent
   },
   {
-    path: 'lista-arrendados', component: ListaarrendadosComponent 
+    path: 'lista-arrendados', component: ListaarrendadosComponent
   },
   {
     path: 'gestion-reportes', component: GestionreportesComponent
