@@ -33,7 +33,7 @@
                         </div>
                         <br>
                         <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
-                    <button class="btn btn-danger return-menu" routerLink="/" (click)=" signOff()"><i
+                    <button class="btn btn-danger return-menu" routerLink="/"><i
                         class="fas fa-sign-out-alt"></i>Cerrar
                       session</button>
 
@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9" *ngIf="user">
-                <br>
-                <div class="card mx-auto center">
+            <!-- <div class="col-sm-9" *ngIf="user"> -->
+                <!-- <br> -->
+                <!-- <div class="card mx-auto center">
                     <figure class="img-profile">
                         <img *ngIf="user.ProfileImage;else imgDefault" class="img-thumbnail avatar"
                             [src]="user.ProfileImage" alt="profile_img">
@@ -71,33 +71,31 @@
                             <li class="list-group-item flex" *ngFor="let contact of lessee.Contacts">
                                 <span>{{contact.Name}}: {{contact.Value}}</span>
                                 <div>
-                                    <button mat-icon-button color="accent" (click)="openUpdateDialog(contact)">
+                                    <button mat-icon-button color="accent">
                                         <mat-icon>edit</mat-icon>
                                     </button>
-                                    <button mat-icon-button color="warn" (click)="openDeleteDialog(contact)">
+                                    <button mat-icon-button color="warn">
                                         <mat-icon>delete</mat-icon>
                                     </button>
                                 </div>
                             </li>
                         </ul>
-                        <app-add-contact *ngIf="add" (closeForm)="displayOrHide($event)" [id]="lessee.ID">
+                        <app-add-contact *ngIf="add">
                         </app-add-contact>
                     </ng-container>
                     <div class="mx-auto">
                         <br>
                         <div class="btn-group">
                             <div>
-                                <button type="button" class="btn btn-primary btn-block" (click)="openDialog()">Modificar
+                                <button type="button" class="btn btn-primary btn-block" >Modificar
                                     perfíl</button>
                             </div>
                         </div>
                         <br><br>
                     </div>
-                </div>
+                </div> -->
 
-            </div>
-
-
+            <!-- </div> -->
 
         </div>
     </div>

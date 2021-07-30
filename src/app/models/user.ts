@@ -1,3 +1,5 @@
+import { Accommodation } from "./accomodation";
+
 export interface User {
     username: string;
     firstName: string;
@@ -7,9 +9,16 @@ export interface User {
     gender: string;
     role: UserRole;
     id?: string;
+    accommodations?: Accommodation[];
+    contacts?: Contact[]; 
 }
 
 export interface UserRole {
     name: string;
     slugName: string;
+}
+
+export interface Contact {
+    name: string;
+    value: string;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,16 +23,7 @@ export class HomeComponent implements OnInit {
   }
   
   onSubmit() {
-    this.user.auth(this.profileForm.value).subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        localStorage.setItem('user', this.utf8_to_b64(JSON.stringify(res.data)))
-        console.log(res.data);
-        this.router.navigate(['/admin/menu']);
-      } else {
-        console.log('Fallo en el inicio de sesión');
-      }
-    });
+    
   }
 
   borrarS() {
