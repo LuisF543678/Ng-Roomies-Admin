@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UpdateProfile } from 'src/app/models/vo/update-profile';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-updateprofile',
@@ -17,12 +16,12 @@ export class UpdateprofileComponent implements OnInit {
   responseSubscription: Subscription;
 
   constructor(public dialogRef: MatDialogRef<UpdateprofileComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: User, private service: UserService) {
+    @Inject(MAT_DIALOG_DATA) public data: User) {
     this.group = this.builder.group({
-      username: [data.user_name, [Validators.required, Validators.email]],
-      name: [data.name, [Validators.required]],
-      fatherSurname: [data.father_surname, [Validators.required]],
-      motherSurname: [data.mother_surname, [Validators.required]],
+      username: [data.username, [Validators.required, Validators.email]],
+      name: [data.firstName, [Validators.required]],
+      fatherSurname: [data.fatherSurname, [Validators.required]],
+      motherSurname: [data.motherSurname, [Validators.required]],
       gender: [data.gender, [Validators.required]]    
     });
     this.responseSubscription = new Subscription();
@@ -45,15 +44,11 @@ export class UpdateprofileComponent implements OnInit {
         this.data.gender
       );
       
-      this.updateProfileHelper(this.data.ID, updateProfile);
+      this.updateProfileHelper(this.data.id, updateProfile);
     }
   }
 
-  updateProfileHelper(id: number, user: UpdateProfile): void {
-    this.responseSubscription = this.service.updateProfile(id, user).subscribe(
-      (data: any) => {
-        this.closeDialog();
-      }
-    );
+  updateProfileHelper(id: string, user: UpdateProfile): void {
+   
   }
 }

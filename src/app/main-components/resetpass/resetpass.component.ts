@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-resetpass',
@@ -12,7 +11,7 @@ export class ResetpassComponent implements OnInit {
   resetForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]]
   })
-  constructor(private fb: FormBuilder, private user: UserService) { }
+  constructor(private fb: FormBuilder) { }
   data: any;// = {fefse: "dfgdf"};
   ngOnInit(): void {
   }
@@ -24,9 +23,9 @@ export class ResetpassComponent implements OnInit {
   onSubmit(): void {
     console.log("Enviando");
     
-    this.user.changePasswordLink(this.resetForm.value.email).subscribe(data => { console.log(data);
+    /* this.user.changePasswordLink(this.resetForm.value.email).subscribe(data => { console.log(data);
       this.data = data;
-    })
+    }) */
   }
   
 }

@@ -1,8 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Contact } from 'src/app/models/lessee';
-import { LessorService } from 'src/app/services/lessor.service';
 
 @Component({
   selector: 'app-delete-contact-dialog',
@@ -14,8 +12,6 @@ export class DeleteContactDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialogRef: MatDialogRef<DeleteContactDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Contact,
-    private service: LessorService
   ) { }
 
   ngOnInit(): void {
@@ -26,11 +22,6 @@ export class DeleteContactDialogComponent implements OnInit, OnDestroy {
   }
 
   deleteContact(): void {
-    this.responseSubscription = this.service.deleteContact(this.data.ID).subscribe(
-      (data) => {
-        this.close();
-      }
-    );
   }
 
   close(): void {
