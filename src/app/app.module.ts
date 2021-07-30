@@ -57,8 +57,6 @@ const firebaseConfig = {
     multi: true
   },
   // Important configuration for the "#" in the production url
-  { provide: LocationStrategy, 
-    useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })

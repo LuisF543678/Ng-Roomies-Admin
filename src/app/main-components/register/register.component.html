@@ -15,22 +15,25 @@
                             <div class="register-form">
                                 <div class="col-sm">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="username" placeholder="Coreo electrónico" value="" />
+                                        <input type="text" class="form-control" formControlName="username" placeholder="Coreo electrónico" />
+                                        <ng-container>
+                                            
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="name" placeholder="Nombre" value="" />
+                                        <input type="text" class="form-control" formControlName="firstName" placeholder="Nombre"/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="father_surname" placeholder="Apellido paterno" value="" />
+                                        <input type="text" class="form-control" formControlName="fatherSurname" placeholder="Apellido paterno"/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="mother_surname" placeholder="Apellido materno" value="" />
+                                        <input type="text" class="form-control" formControlName="motherSurname" placeholder="Apellido materno"/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" value="" />
+                                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña"/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" (focusout)="passMatch()" formControlName="confirmPassword" placeholder="Confirmar Contraseña" value="" />
+                                        <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirmar Contraseña"/>
                                     </div>
                                     <div class="form-group">
                                         <div class="maxl">

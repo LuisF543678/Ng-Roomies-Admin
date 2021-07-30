@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UploadImage } from 'src/app/models/vo/upload-image';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pick-photo-dialog',
@@ -18,7 +17,6 @@ export class PickPhotoDialogComponent implements OnInit, OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<PickPhotoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: number,
-    private service: UserService  
   ) {
     this.upload = UploadImage.createVoid();
     this.reader = new FileReader();
@@ -54,12 +52,7 @@ export class PickPhotoDialogComponent implements OnInit, OnDestroy {
 
   uploadImage(): void {
     if (this.upload.file) {
-      const uploadClone = new UploadImage(this.upload.filename, this.upload.file.split(',')[1]);
-      this.imageSubscription = this.service.uploadPhoto(this.data, uploadClone).subscribe(
-        (data) => {
-          this.closeDialog();
-        }
-      );
+      
     }
   }
 }

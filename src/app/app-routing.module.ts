@@ -13,7 +13,6 @@ const routes: Routes = [{
 },
 {
   path: 'admin',
-
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
   canActivate:[DashboardGuard]
 },
@@ -24,7 +23,7 @@ const routes: Routes = [{
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
