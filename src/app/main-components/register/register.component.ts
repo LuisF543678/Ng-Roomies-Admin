@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordFormat, PASSWORD_REGEXP, sameValue } from 'src/app/services/utils';
+import { passwordFormat, PASSWORD_REGEXP } from 'src/app/services/utils';
 
 @Component({
   selector: 'app-register',
@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
   
   initForm(): void {
     this.registerForm = this.fb.group({
-      username: ['', Validators.required, Validators.email],
+      username: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       fatherSurname: ['', Validators.required],
       motherSurname: ['', Validators.required],
       gender: ['male', Validators.required],
-      password: ['', Validators.required, passwordFormat(PASSWORD_REGEXP)],
-      confirmPassword: ['', Validators.required, passwordFormat(PASSWORD_REGEXP)],
+      password: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
+      confirmPassword: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
     });
   }
 
