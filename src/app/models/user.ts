@@ -5,10 +5,11 @@ export interface User {
     firstName: string;
     fatherSurname: string;
     motherSurname: string;
-    profileImage: string;
+    birthDate: string;
     gender: string;
     role: UserRole;
     id?: string;
+    profileImage?: string;
     accommodations?: Accommodation[];
     contacts?: Contact[]; 
 }

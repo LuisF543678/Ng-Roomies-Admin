@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../models/userfire';
+import { User } from '../models/user';
 import { Observable, Subscription } from 'rxjs';
 import { Extractor } from '../models/vo/extractor';
+import { UserSignUp } from '../models/vo/usersignup';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  extractor: Extractor<User>;
 
   constructor(
     private database: AngularFirestore,
     private auth: AngularFireAuth,
-    private extractor: Extractor<User>,
-    ) { }
+  ) {
+    this.extractor = new Extractor();
+  }
 
   /**
    * Finds an user given his email and roleName.
@@ -47,6 +50,28 @@ export class AuthService {
       console.error
     );
     subscriber.unsubscribe();
+  }
+
+  /**
+   * Creates the account of a new user.
+   * @param user the user data.
+   * @returns Promise<void>
+   */
+  public async signUp(user: UserSignUp): Promise<boolean> {
+    try {
+      const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
+      if (response) {
+        delete user.password;
+        await this.database.collection<User>('users').add(user);
+        const currentUser = await this.auth.currentUser;
+        await currentUser.sendEmailVerification();
+        this.signOut();
+      }
+      return true;
+    } catch (error: any) {
+      console.log(error);
+      return false;
+    }
   }
 
   /**
