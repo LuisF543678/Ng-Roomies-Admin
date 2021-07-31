@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserSignUp } from 'src/app/models/vo/usersignup';
+import { AuthService } from 'src/app/services/auth.service';
 import { passwordFormat, PASSWORD_REGEXP } from 'src/app/services/utils';
 
 @Component({
@@ -10,17 +12,45 @@ import { passwordFormat, PASSWORD_REGEXP } from 'src/app/services/utils';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.initForm();
   }
   
   ngOnInit(): void {
   }
   
-  onSubmit(): void {
-    
+  async onSubmit(): Promise<void> {
+    if (this.registerForm.valid && this.areSamePasswords()) {
+      const data = this.parseFormDataToUserSignup();
+      const result = await this.authService.signUp(data);
+      if (result) {
+        console.log('Se ha creado la cuenta de usuario');
+      } else {
+        console.log('No se pudo crear la cuenta de usuario');
+      }
+    }
   }
   
+  private areSamePasswords(): boolean {
+    return this.registerForm.get('password').value == this.registerForm.get('confirmPassword').value;
+  }
+
+  private parseFormDataToUserSignup(): UserSignUp {
+    return {
+      username: this.registerForm.get('username').value,
+      firstName: this.registerForm.get('firstName').value,
+      fatherSurname: this.registerForm.get('fatherSurname').value,
+      motherSurname: this.registerForm.get('motherSurname').value,
+      gender: this.registerForm.get('gender').value,
+      birthDate: this.registerForm.get('birthDate').value,
+      password: this.registerForm.get('password').value,
+      role: {
+        name: 'Arrendador',
+        slugName: 'A'
+      }
+    }
+  }
+
   initForm(): void {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],

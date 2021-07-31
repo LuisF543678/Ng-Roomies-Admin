@@ -55,7 +55,7 @@ export class AuthService {
    * @param user the user data.
    * @returns Promise<void>
    */
-  public async signUp(user: UserSignUp): Promise<void> {
+  public async signUp(user: UserSignUp): Promise<boolean> {
     try {
       const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
       if (response) {
@@ -65,8 +65,10 @@ export class AuthService {
         await currentUser.sendEmailVerification();
         this.signOut();
       }
+      return true;
     } catch (error: any) {
       console.log(error);
+      return false;
     }
   }
 
