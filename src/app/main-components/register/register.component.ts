@@ -29,8 +29,6 @@ export class RegisterComponent implements OnInit {
       } else {
         console.log('No se pudo crear la cuenta de usuario');
       }
-    } else {
-      console.log('form invalid');
     }
   }
   
@@ -47,10 +45,7 @@ export class RegisterComponent implements OnInit {
       gender: this.registerForm.get('gender').value,
       birthDate: this.registerForm.get('birthDate').value,
       password: this.registerForm.get('password').value,
-      role: {
-        name: 'Arrendador',
-        slugName: 'A'
-      }
+      admin: true
     }
   }
 

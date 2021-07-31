@@ -1,4 +1,4 @@
-import { QueryDocumentSnapshot } from "@angular/fire/firestore";
+import { SnapshotAction } from "@angular/fire/database";
 
 /**
  * Generic class to extract data from a firebase document.
@@ -13,10 +13,7 @@ export class Extractor<T> {
    * @param documentRef firebase document
    * @returns an object of the data type specified in the class.
    */
-  public extractData(documentRef: QueryDocumentSnapshot<T>): T {
-    return {
-      ...documentRef.data(),
-      id: documentRef.id,
-    };
+  public extractData(documentRef: SnapshotAction<T>): T {
+    return documentRef.payload.val();
   }
 }
