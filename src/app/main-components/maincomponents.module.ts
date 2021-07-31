@@ -8,11 +8,12 @@ import { MainRoutingModule } from './main-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ConfirmDialogComponent } from './register/confirm-dialog/confirm-dialog.component';
 
 
 
 @NgModule({
-  declarations: [AboutComponent, LoginComponent, RegisterComponent, ResetpassComponent],
+  declarations: [AboutComponent, LoginComponent, RegisterComponent, ResetpassComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
