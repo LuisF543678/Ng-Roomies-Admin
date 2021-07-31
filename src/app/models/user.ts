@@ -6,6 +6,7 @@ export interface User {
     fatherSurname: string;
     motherSurname: string;
     profileImage: string;
+    birthDate: string;
     gender: string;
     role: UserRole;
     id?: string;

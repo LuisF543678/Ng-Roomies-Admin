@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
       fatherSurname: ['', Validators.required],
       motherSurname: ['', Validators.required],
       gender: ['male', Validators.required],
+      birthDate: ['', [Validators.required]],
       password: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
       confirmPassword: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
     });
