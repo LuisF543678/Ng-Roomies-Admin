@@ -10,12 +10,14 @@ import { UserSignUp } from '../models/vo/usersignup';
   providedIn: 'root'
 })
 export class AuthService {
+  extractor: Extractor<User>;
 
   constructor(
     private database: AngularFirestore,
     private auth: AngularFireAuth,
-    private extractor: Extractor<User>,
-    ) { }
+  ) {
+    this.extractor = new Extractor();
+  }
 
   /**
    * Finds an user given his email and roleName.

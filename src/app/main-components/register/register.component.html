@@ -15,7 +15,7 @@
                             <div class="register-form">
                                 <div class="col-sm">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="username" placeholder="Coreo electrónico" />
+                                        <input type="text" class="form-control" formControlName="username" placeholder="Correo electrónico" />
                                         <ng-container *ngIf="registerForm.get('username').errors && registerForm.get('username').touched">
                                             <p class="text-danger" *ngIf="registerForm.get('username').hasError('required')">El email es obligatorio.</p>
                                             <p class="text-danger" *ngIf="registerForm.get('username').hasError('email')">El formato de email no es correcto.</p>
@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <input type="date" class="form-control" formControlName="birthDate" placeholder="01/01/2021" />
                                         <ng-container *ngIf="registerForm.get('birthDate').errors && registerForm.get('birthDate').touched">
-                                            <p *ngIf="registerForm.get('birthDate').hasError('required')">La fecha de nacimiento es obligatoria.</p>
+                                            <p *ngIf="registerForm.get('birthDate').hasError('required')" class="text-danger">La fecha de nacimiento es obligatoria.</p>
                                         </ng-container>
                                     </div>
                                     <div class="form-group">
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirmar Contraseña"/>
-                                        <ng-container *ngIf="registerForm.get('confirmPassword').errors && registerForm,get('confirmPassword').touched">
+                                        <ng-container *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched">
                                             <p class="text-danger" *ngIf="registerForm.get('confirmPassword').hasError('required')">La confirmación de contraseña es obligatoria.</p>
                                             <p class="text-danger" *ngIf="registerForm.get('confirmPassword').hasError('passwordFormat')">La confirmación contraseña debe ser de mínimo 8 caracteres. Debe contener al menos una letra minúscula, una letra mayúscula, un número y un símbolo</p>
                                             <p class="text-danger" *ngIf="registerForm.get('confirmPassword').value != registerForm.get('password').value">La contraseñas son distintas.</p>
@@ -69,6 +69,10 @@
                                             <label class="radio inline">
                                                 <input type="radio" name="gender" formControlName="gender" value="female">
                                                 <span>Mujer </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="gender" formControlName="gender" value="other">
+                                                <span>Otro</span>
                                             </label>
                                         </div>
                                     </div>

@@ -6,6 +6,8 @@ import { RegisterComponent } from './register/register.component';
 import { ResetpassComponent } from './resetpass/resetpass.component';
 import { MainRoutingModule } from './main-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 
@@ -14,7 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MainRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ]
 })
 export class MaincomponentsModule { }

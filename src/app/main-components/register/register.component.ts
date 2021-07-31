@@ -7,7 +7,8 @@ import { passwordFormat, PASSWORD_REGEXP } from 'src/app/services/utils';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthService]
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -28,6 +29,8 @@ export class RegisterComponent implements OnInit {
       } else {
         console.log('No se pudo crear la cuenta de usuario');
       }
+    } else {
+      console.log('form invalid');
     }
   }
   
