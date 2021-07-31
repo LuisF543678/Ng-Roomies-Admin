@@ -1,4 +1,3 @@
-import { UserRole } from "../user";
 
 export interface UserSignUp {
   username: string;
@@ -8,5 +7,5 @@ export interface UserSignUp {
   birthDate: string;
   gender: string;
   password: string;
-  role: UserRole;
+  admin: boolean;
 }

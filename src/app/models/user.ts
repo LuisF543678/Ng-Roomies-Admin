@@ -7,16 +7,11 @@ export interface User {
     motherSurname: string;
     birthDate: string;
     gender: string;
-    role: UserRole;
+    admin: boolean;
     id?: string;
     profileImage?: string;
     accommodations?: Accommodation[];
     contacts?: Contact[]; 
-}
-
-export interface UserRole {
-    name: string;
-    slugName: string;
 }
 
 export interface Contact {
