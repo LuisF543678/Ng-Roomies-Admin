@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../models/userfire';
+import { User } from '../models/user';
 import { Observable, Subscription } from 'rxjs';
 import { Extractor } from '../models/vo/extractor';
 
@@ -19,7 +19,7 @@ export class AuthService {
   /**
    * Finds an user given his email and roleName.
    * @param email 
-   * @param roleName 
+   * @param roleName "Inquilino" or "Arrendador" allowed.
    * @returns QuerySnapshot<User>: a reference to query results.
    */
   private searchUser(email: string, roleName: string): Observable<QuerySnapshot<User>> {
@@ -31,9 +31,9 @@ export class AuthService {
    * Signs in an user given the arguments.
    * @param email the email of the user.
    * @param password the password of the user.
-   * @param roleName the name of the user role.
+   * @param roleName the name of the user role ("Inquilino" or "Arrendador" allowed).
    */
-  public signIn(email: string, password: string, roleName: string): void {
+  public signInWithEmail(email: string, password: string, roleName: string): void {
     let subscriber: Subscription;
     const userRef = this.searchUser(email, roleName);
     subscriber = userRef.subscribe(
@@ -48,6 +48,14 @@ export class AuthService {
     );
     subscriber.unsubscribe();
   }
+
+  // public signInWithGoogle(): void {
+
+  // }
+
+  // public signInWithFacebook(): void {
+
+  // }
 
   /**
    * Logout the current user.

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
   
   onSubmit() {
-    
+    // this.auth.signInWithEmail(this.profileForm.value.username, this.profileForm.value.username, "Arrendador")
   }
 
   borrarS() {

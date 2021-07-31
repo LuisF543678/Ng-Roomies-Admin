@@ -17,6 +17,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire';
+import { AuthService } from './services/auth.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlaea9L46r--_5ivWSn--ShFfQkrbu9cc",
