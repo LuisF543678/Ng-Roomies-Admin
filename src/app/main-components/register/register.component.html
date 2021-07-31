@@ -15,25 +15,50 @@
                             <div class="register-form">
                                 <div class="col-sm">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="username" placeholder="Coreo electrónico" />
-                                        <ng-container>
-                                            
+                                        <input type="text" class="form-control" formControlName="username" placeholder="Correo electrónico" />
+                                        <ng-container *ngIf="registerForm.get('username').errors && registerForm.get('username').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('username').hasError('required')">El email es obligatorio.</p>
+                                            <p class="text-danger" *ngIf="registerForm.get('username').hasError('email')">El formato de email no es correcto.</p>
                                         </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" formControlName="firstName" placeholder="Nombre"/>
+                                        <ng-container *ngIf="registerForm.get('firstName').errors && registerForm.get('firstName').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('firstName').hasError('required')">El nombre es obligatorio.</p>
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" formControlName="fatherSurname" placeholder="Apellido paterno"/>
+                                        <ng-container *ngIf="registerForm.get('fatherSurname').errors && registerForm.get('fatherSurname').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('fatherSurname').hasError('required')">El apellido paterno es obligatorio.</p>
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" formControlName="motherSurname" placeholder="Apellido materno"/>
+                                        <ng-container *ngIf="registerForm.get('motherSurname').errors && registerForm.get('motherSurname').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('motherSurname').hasError('required')">El apellido materno es obligatorio.</p>
+                                        </ng-container>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" formControlName="birthDate" placeholder="01/01/2021" />
+                                        <ng-container *ngIf="registerForm.get('birthDate').errors && registerForm.get('birthDate').touched">
+                                            <p *ngIf="registerForm.get('birthDate').hasError('required')" class="text-danger">La fecha de nacimiento es obligatoria.</p>
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" formControlName="password" placeholder="Contraseña"/>
+                                        <ng-container *ngIf="registerForm.get('password').errors && registerForm.get('password').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('password').hasError('required')">La contraseña es obligatoria.</p>
+                                            <p class="text-danger" *ngIf="registerForm.get('password').hasError('passwordFormat')">La contraseña debe ser de mínimo 8 caracteres. Debe contener al menos una letra minúscula, una letra mayúscula, un número y un símbolo</p>
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirmar Contraseña"/>
+                                        <ng-container *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched">
+                                            <p class="text-danger" *ngIf="registerForm.get('confirmPassword').hasError('required')">La confirmación de contraseña es obligatoria.</p>
+                                            <p class="text-danger" *ngIf="registerForm.get('confirmPassword').hasError('passwordFormat')">La confirmación contraseña debe ser de mínimo 8 caracteres. Debe contener al menos una letra minúscula, una letra mayúscula, un número y un símbolo</p>
+                                            <p class="text-danger" *ngIf="registerForm.get('confirmPassword').value != registerForm.get('password').value">La contraseñas son distintas.</p>
+                                        </ng-container>
                                     </div>
                                     <div class="form-group">
                                         <div class="maxl">
@@ -44,6 +69,10 @@
                                             <label class="radio inline">
                                                 <input type="radio" name="gender" formControlName="gender" value="female">
                                                 <span>Mujer </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="gender" formControlName="gender" value="other">
+                                                <span>Otro</span>
                                             </label>
                                         </div>
                                     </div>
