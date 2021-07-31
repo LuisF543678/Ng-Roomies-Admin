@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ConfirmDialogComponent } from './register/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -19,7 +21,9 @@ import { ConfirmDialogComponent } from './register/confirm-dialog/confirm-dialog
     MainRoutingModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class MaincomponentsModule { }
