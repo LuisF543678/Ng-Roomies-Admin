@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardGuard } from './guards/dashboard.guard';
+//import { DashboardGuard } from './guards/dashboard.guard';
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [{
@@ -14,7 +14,7 @@ const routes: Routes = [{
 {
   path: 'admin',
   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-  canActivate:[DashboardGuard]
+  //canActivate:[DashboardGuard]
 },
 // Important the route must be here
 { path: '404', component: NotfoundComponent },

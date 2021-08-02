@@ -33,43 +33,43 @@
                         </div>
                         <br>
                         <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
-                    <button class="btn btn-danger return-menu" routerLink="/"><i
-                        class="fas fa-sign-out-alt"></i>Cerrar
-                      session</button>
+                        <button class="btn btn-danger return-menu" routerLink="/"><i
+                                class="fas fa-sign-out-alt"></i>Cerrar
+                            session</button>
 
                         <!--/.nav-collapse -->
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-9" *ngIf="user"> -->
-                <!-- <br> -->
-                <!-- <div class="card mx-auto center">
+            <!-- <div class="col-sm-9" > 
+                <br> 
+                <div class="card mx-auto center">
                     <figure class="img-profile">
-                        <img *ngIf="user.ProfileImage;else imgDefault" class="img-thumbnail avatar"
-                            [src]="user.ProfileImage" alt="profile_img">
+                        <img class="img-thumbnail avatar"
+                             alt="profile_img">
                         <ng-template #imgDefault>
                             <img class="img-thumbnail avatar"
                                 src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg"
                                 alt="profile_img">
                         </ng-template>
                     </figure>
-                    <button mat-fab color="primary" class="add-photo" (click)="openPhotoDialog()">
+                    <button mat-fab color="primary" class="add-photo" >
                         <mat-icon>add_a_photo</mat-icon>
                     </button>
                     <div class="card-body">
                         <h3>Administrador</h3>
-                        <p class="card-text">{{user.name}} {{user.father_surname}} {{user.mother_surname}}</p>
+                        <p class="card-text">user</p>
                     </div>
                     <ng-container>
                         <div class="flex--center">
                             <h3>Medios de contacto</h3>
-                            <button mat-button color="primary" (click)="displayOrHide(true)">
+                            <button mat-button color="primary"></button>
                                 Agregar contacto
                             </button>
                         </div>
-                        <ul class="list-group full" *ngIf="lessee && lessee.Contacts.length > 0">
-                            <li class="list-group-item flex" *ngFor="let contact of lessee.Contacts">
-                                <span>{{contact.Name}}: {{contact.Value}}</span>
+                        <ul class="list-group full">
+                            <li class="list-group-item flex">
+                                <span>contac name</span>
                                 <div>
                                     <button mat-icon-button color="accent">
                                         <mat-icon>edit</mat-icon>
@@ -80,7 +80,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <app-add-contact *ngIf="add">
+                        <app-add-contact>
                         </app-add-contact>
                     </ng-container>
                     <div class="mx-auto">
@@ -93,10 +93,41 @@
                         </div>
                         <br><br>
                     </div>
-                </div> -->
+                </div> 
 
-            <!-- </div> -->
+             </div> 
+ -->
 
+            <div class="contenedor">
+                <div class="contenedor_formulario">
+                    <h1 class="is-size-1">Subir foto de perfil</h1>
+                   <!--  <p class="download">URL de descarga: <a href="#" target="_blank">Descargar</a></p> -->
+                    <form>
+                        <div class="file has-name is-boxed">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="resume">
+                                <span class="file-cta">
+                                    <span class="file-label">
+                                        Elegir un archivo…
+                                    </span>
+                                </span>
+                                <!-- <span class="file-name">
+              No hay un archivo seleccionado
+            </span> -->
+                            </label>
+                        </div>
+                        <hr>
+                        <progress class="progress is-large is-success" value="0" max="100">0%</progress>
+                        <button class="button is-success is-large">Subir archivo</button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br><br><br><br>
+                <br><br>
+            </div>
         </div>
     </div>
 </div>

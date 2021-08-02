@@ -6,22 +6,22 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
   providedIn: 'root'
 })
 export class DashboardGuard implements CanActivate {
-  constructor(private router: Router) { }
-  b64_to_utf8(str: string) {
+  constructor() { }
+  /* b64_to_utf8(str: string) {
     return decodeURIComponent(escape(window.atob(str)));
-  }
+  } */
   canActivate(): boolean {
-    let user: any;
-    user = localStorage.getItem('user');
+    //let user: any;
+    //user = localStorage.getItem('user');
     //console.log(user);
-    let duser = this.b64_to_utf8(user);
-    if (duser !== null) {
+    //let duser = this.b64_to_utf8(user);
+    /* if (duser !== null) {
       user = JSON.parse(duser);
       if (user.access_token !== undefined) {
         console.log('true');
         return true;
       }
-    }
+    } */
     return false;
   }
 
