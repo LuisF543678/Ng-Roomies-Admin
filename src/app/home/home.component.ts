@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
   
   onSubmit() {
-    // this.auth.signInWithEmail(this.profileForm.value.username, this.profileForm.value.username, "Arrendador")
+    this.auth.signInWithEmail(this.profileForm.value.username, this.profileForm.value.username, "Arrendador")
   }
 
   borrarS() {
