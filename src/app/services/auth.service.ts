@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user';
 import { Observable, Subscription } from 'rxjs';
@@ -13,8 +13,8 @@ export class AuthService {
   extractor: Extractor<User>;
 
   constructor(
-    private database: AngularFirestore,
     private auth: AngularFireAuth,
+    private database: AngularFireDatabase
   ) {
     this.extractor = new Extractor();
   }
@@ -23,10 +23,10 @@ export class AuthService {
    * Finds an user given his email and roleName.
    * @param email 
    * @param roleName 
-   * @returns QuerySnapshot<User>: a reference to query results.
+   * @returns AngularFireList<User>: a reference to query results.
    */
-  private searchUser(email: string, roleName: string): Observable<QuerySnapshot<User>> {
-    const response = this.database.collection<User>('users', (ref) => ref.where('email', '==', email).where('role.name', '==', roleName).limit(1)).get();
+  private searchUser(email: string): AngularFireList<User> {
+    const response = this.database.list<User>('users', (ref) => ref.orderByChild('username').equalTo(email).orderByChild('admin').equalTo(true));
     return response;
   }
 
@@ -36,14 +36,14 @@ export class AuthService {
    * @param password the password of the user.
    * @param roleName the name of the user role.
    */
-  public signIn(email: string, password: string, roleName: string): void {
+  public signIn(email: string, password: string): void {
     let subscriber: Subscription;
-    const userRef = this.searchUser(email, roleName);
-    subscriber = userRef.subscribe(
-      data => {
-        const user = data.docs.map(this.extractor.extractData)[0];
+    const collectionRef = this.searchUser(email);
+    subscriber = collectionRef.snapshotChanges().subscribe(
+      async (data) => {
+        const user = this.extractor.extractData(data[0]);
         if (user) {
-          this.auth.signInWithEmailAndPassword(email, password);
+          await this.auth.signInWithEmailAndPassword(email, password);
           localStorage.setItem('user', JSON.stringify(user));
         }
       },
@@ -62,7 +62,7 @@ export class AuthService {
       const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
       if (response) {
         delete user.password;
-        await this.database.collection<User>('users').add(user);
+        await this.database.list<User>('users').push(user);
         const currentUser = await this.auth.currentUser;
         await currentUser.sendEmailVerification();
         this.signOut();
@@ -72,6 +72,15 @@ export class AuthService {
       console.log(error);
       return false;
     }
+  }
+
+  /**
+   * Retrieve the data of the user signed in.
+   * @returns User data.
+   */
+  public getCurrentUser(): User {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user;
   }
 
   /**
