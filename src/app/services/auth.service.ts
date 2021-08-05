@@ -22,34 +22,66 @@ export class AuthService {
   /**
    * Finds an user given his email and roleName.
    * @param email 
-   * @param roleName 
-   * @returns AngularFireList<User>: a reference to query results.
+   * @param roleName "Inquilino" or "Arrendador" allowed.
+   * @returns QuerySnapshot<User>: a reference to query results.
    */
   private searchUser(email: string): AngularFireList<User> {
-    const response = this.database.list<User>('users', (ref) => ref.orderByChild('username').equalTo(email).orderByChild('admin').equalTo(true));
+    const response = this.database.list<User>('users', (ref) => ref.orderByChild('username').equalTo(email));
+    // response.valueChanges().subscribe((data) => {console.log(data)})
     return response;
+  }
+
+  private search(email: string) {
+    //console.log(this.database.list('users', (ref) => {ref.}))
   }
 
   /**
    * Signs in an user given the arguments.
    * @param email the email of the user.
    * @param password the password of the user.
-   * @param roleName the name of the user role.
+   * @param roleName the name of the user role ("Inquilino" or "Arrendador" allowed).
+   */
+  //  public signIn(email: string, password: string): void {
+  //   let subscriber: Subscription;
+  //   const collectionRef = this.searchUser(email);
+  //   console.log(collectionRef)
+  //   subscriber = collectionRef.snapshotChanges().subscribe(
+  //     async (data) => {
+  //       console.log('hi' + data)
+  //       const user = this.extractor.extractData(data[0]);
+  //       if (user) {
+  //         await this.auth.signInWithEmailAndPassword(email, password);
+  //         localStorage.setItem('user', JSON.stringify(user));
+  //       }
+  //     },
+  //     console.error
+  //   );
+  //   subscriber.unsubscribe();
+  // }
+
+  /**
+   * This is an alternative method to the Gera's method used to authenticate and store user's data
+   * Also this is not the best way and this method needs security fixes
+   * @param email the user's email
+   * @param password the user's password
    */
   public signIn(email: string, password: string): void {
     let subscriber: Subscription;
-    const collectionRef = this.searchUser(email);
-    subscriber = collectionRef.snapshotChanges().subscribe(
-      async (data) => {
-        const user = this.extractor.extractData(data[0]);
-        if (user) {
-          await this.auth.signInWithEmailAndPassword(email, password);
-          localStorage.setItem('user', JSON.stringify(user));
+    const user = this.searchUser(email);
+    subscriber = user.valueChanges().subscribe(
+      (data) => {
+        console.log(data)
+        if (data.length > 0) {
+          this.auth.signInWithEmailAndPassword(email, password).then(
+            ((res) => {
+              console.log(res)
+              localStorage.setItem('user', JSON.stringify(data));
+            }), (error) => { console.log(error) 
+            }
+          );
         }
-      },
-      console.error
+      }
     );
-    subscriber.unsubscribe();
   }
 
   /**
@@ -62,6 +94,7 @@ export class AuthService {
       const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
       if (response) {
         delete user.password;
+        let User;
         await this.database.list<User>('users').push(user);
         const currentUser = await this.auth.currentUser;
         await currentUser.sendEmailVerification();
