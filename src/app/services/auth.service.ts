@@ -67,18 +67,13 @@ export class AuthService {
    */
   public signIn(email: string, password: string): void {
     let subscriber: Subscription;
-    const user = this.searchUser(email);
-    subscriber = user.valueChanges().subscribe(
-      (data) => {
-        console.log(data)
-        if (data.length > 0) {
-          this.auth.signInWithEmailAndPassword(email, password).then(
-            ((res) => {
-              console.log(res)
-              localStorage.setItem('user', JSON.stringify(data));
-            }), (error) => { console.log(error) 
-            }
-          );
+    const collectionRef = this.searchUser(email);
+    subscriber = collectionRef.snapshotChanges().subscribe(
+      async (data) => {
+        const user = this.extractor.extractData(data[0]);
+        if (user) {
+          await this.auth.signInWithEmailAndPassword(email, password);
+          localStorage.setItem('user', JSON.stringify(user));
         }
       }
     );
@@ -94,7 +89,6 @@ export class AuthService {
       const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
       if (response) {
         delete user.password;
-        let User;
         await this.database.list<User>('users').push(user);
         const currentUser = await this.auth.currentUser;
         await currentUser.sendEmailVerification();
