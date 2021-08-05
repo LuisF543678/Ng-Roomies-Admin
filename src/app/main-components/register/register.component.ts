@@ -1,55 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { HttpClientService } from 'src/app/services/http-client.service';
-import { UserService } from 'src/app/services/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserSignUp } from 'src/app/models/vo/usersignup';
+import { AuthService } from 'src/app/services/auth.service';
+import { passwordFormat, PASSWORD_REGEXP } from 'src/app/services/utils';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthService]
 })
 export class RegisterComponent implements OnInit {
-
-  registerForm = this.fb.group({
-    username: ['', Validators.required],
-    name: ['', Validators.required],
-    father_surname: ['', Validators.required],
-    mother_surname: ['', Validators.required],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-    gender: ['male', Validators.required]
-  });
-
-  passMatches = false;
-
-  constructor(private fb: FormBuilder, private httpClient: HttpClientService, private userService: UserService) { }
-
+  registerForm: FormGroup;
+  
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.initForm();
+  }
+  
   ngOnInit(): void {
   }
-
-  onSubmit() {
-    // console.log(this.registerForm.value);
-    // let val = this.httpClient.get('https://reqres.in/api/user');
-    // console.log(val);
-    const newUser = {
-      "username": this.registerForm.value.username,
-      "name": this.registerForm.value.name,
-      "father_surname": this.registerForm.value.father_surname,
-      "mother_surname": this.registerForm.value.mother_surname,
-      "password": this.registerForm.value.password,
-      "user_role_id": 2
+  
+  async onSubmit(): Promise<void> {
+    if (this.registerForm.valid && this.areSamePasswords()) {
+      const data = this.parseFormDataToUserSignup();
+      const result = await this.authService.signUp(data);
+      if (result) {
+        console.log('Se ha creado la cuenta de usuario');
+      } else {
+        console.log('No se pudo crear la cuenta de usuario');
+      }
     }
-    console.log('Raw form \n', this.registerForm.value, '\n');
-    console.log(newUser);
-
-    this.userService.registerUser(newUser).subscribe((a) => console.log(a));
+  }
+  
+  private areSamePasswords(): boolean {
+    return this.registerForm.get('password').value == this.registerForm.get('confirmPassword').value;
   }
 
-  passMatch() {
-    this.registerForm.value.password === this.registerForm.value.confirmPassword ? this.passMatches = true : this.passMatches = false;
-    console.log(this.passMatches);
-    console.log('form is valid', this.registerForm.valid);
+  private parseFormDataToUserSignup(): UserSignUp {
+    return {
+      username: this.registerForm.get('username').value,
+      firstName: this.registerForm.get('firstName').value,
+      fatherSurname: this.registerForm.get('fatherSurname').value,
+      motherSurname: this.registerForm.get('motherSurname').value,
+      gender: this.registerForm.get('gender').value,
+      birthDate: this.registerForm.get('birthDate').value,
+      password: this.registerForm.get('password').value,
+      admin: true
+    }
+  }
 
+  initForm(): void {
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      fatherSurname: ['', Validators.required],
+      motherSurname: ['', Validators.required],
+      gender: ['male', Validators.required],
+      birthDate: ['', [Validators.required]],
+      password: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
+      confirmPassword: ['', [Validators.required, passwordFormat(PASSWORD_REGEXP)]],
+    });
   }
 
 }

@@ -33,7 +33,10 @@ import { DeleteContactDialogComponent } from './components/delete-contact-dialog
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+
+    //firebase
+    
   ],
 })
 export class AdminModule { }
