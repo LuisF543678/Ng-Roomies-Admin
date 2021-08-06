@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { InfoFormComponent } from './info-form/info-form.component';
 import { AddressFormComponent } from './address-form/address-form.component';
+import { CoordinatesFormComponent } from './coordinates-form/coordinates-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AddressFormComponent } from './address-form/address-form.component';
     AlojamientosComponent,
     CreateAccommodationComponent,
     InfoFormComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    CoordinatesFormComponent
   ],
   imports: [
     CommonModule,
