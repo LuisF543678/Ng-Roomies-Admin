@@ -21,9 +21,10 @@ import { PickPhotoDialogComponent } from './components/pick-photo-dialog/pick-ph
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { UpdateContactDialogComponent } from './components/update-contact-dialog/update-contact-dialog.component';
 import { DeleteContactDialogComponent } from './components/delete-contact-dialog/delete-contact-dialog.component';
+import { CreateAccommodationComponent } from './alojamientos/create-accommodation/create-accommodation.component';
 
 @NgModule({
-  declarations: [EstadisticasComponent, PeticionesarrendamientoComponent, GestionarrendadosComponent, GestionreportesComponent, ListaarrendadosComponent, ProfileComponent, UserdetailsComponent, AlojamientosComponent, MenuComponent, UpdateprofileComponent, PickPhotoDialogComponent, AddContactComponent, UpdateContactDialogComponent, DeleteContactDialogComponent],
+  declarations: [EstadisticasComponent, PeticionesarrendamientoComponent, GestionarrendadosComponent, GestionreportesComponent, ListaarrendadosComponent, ProfileComponent, UserdetailsComponent, AlojamientosComponent, MenuComponent, UpdateprofileComponent, PickPhotoDialogComponent, AddContactComponent, UpdateContactDialogComponent, DeleteContactDialogComponent, CreateAccommodationComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
