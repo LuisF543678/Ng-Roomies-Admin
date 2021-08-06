@@ -20,7 +20,6 @@ import { PickPhotoDialogComponent } from './components/pick-photo-dialog/pick-ph
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { UpdateContactDialogComponent } from './components/update-contact-dialog/update-contact-dialog.component';
 import { DeleteContactDialogComponent } from './components/delete-contact-dialog/delete-contact-dialog.component';
-import { AlojamientosModule } from './alojamientos/alojamientos.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,6 @@ import { AlojamientosModule } from './alojamientos/alojamientos.module';
     FormsModule,
     MatInputModule,
     MatIconModule,
-    AlojamientosModule
   ],
 })
 export class AdminModule { }

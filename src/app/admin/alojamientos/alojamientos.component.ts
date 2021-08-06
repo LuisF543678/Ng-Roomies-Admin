@@ -22,4 +22,7 @@ export class AlojamientosComponent implements OnInit {
     //this.router.navigate(['/']);
   }
 
+  navigateToCreate(): void {
+    this.router.navigate(['/admin', 'alojamientos', 'create']);
+  }
 }

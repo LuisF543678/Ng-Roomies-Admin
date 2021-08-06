@@ -45,7 +45,7 @@
         <br>
         <div class="row d-flex justify-content-between mb-2">
           <h2 class="fs-2 text-start">Alojamientos que administras.</h2>
-          <a [routerLink]="['/admin','alojamientos','create']" class="btn btn-success">Agregar alojamiento</a>
+          <button class="btn btn-success" (click)="navigateToCreate()">Agregar alojamiento</button>
         </div>
         <div class="col-12">
           <table class="table table-bordered">
