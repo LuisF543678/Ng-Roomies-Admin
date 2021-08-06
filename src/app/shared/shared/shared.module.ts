@@ -8,28 +8,33 @@ import { MatInputModule } from '@angular/material/input';
 import { MatLineModule, MatOptionModule, MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
-const components = [
-  MatButtonModule,
-  MatStepperModule,
-  MatIconModule,
-  MatButtonModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatLineModule,
-  MatDialogModule,
-  MatOptionModule,
-  MatRippleModule
-];
 
 @NgModule({
-  declarations: [
-    ...components
-  ],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatLineModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatRippleModule,
   ],
   exports: [
-    ...components
+    MatButtonModule,
+    MatStepperModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatLineModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatRippleModule
   ]
 })
 export class SharedModule { }

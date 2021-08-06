@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SharedModule } from './shared/shared/shared.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlaea9L46r--_5ivWSn--ShFfQkrbu9cc",
@@ -46,7 +47,8 @@ const firebaseConfig = {
     MatIconModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedModule
   ],
   providers: [
     {

@@ -1,1 +1,18 @@
-<p>create-accommodation works!</p>
+<div class="container">
+  <div class="row pt-5">
+    <h2>Ingresa los datos que se te piden</h2>
+    <div class="col-12">
+      <mat-horizontal-stepper linear #stepper> 
+        <mat-step editable [stepControl]="informationForm">
+          <ng-template matStepLabel>Datos generales</ng-template>
+        </mat-step>
+        <mat-step editable [stepControl]="addressForm">
+          <ng-template matStepLabel>Dirección</ng-template>
+        </mat-step>
+        <mat-step editable [stepControl]="coordinatesForm">
+          <ng-template matStepLabel>Coordenadas</ng-template>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+</div>
