@@ -2,22 +2,23 @@ import { User } from "./user";
 
 export interface Accommodation {
   name: string;
-  address: Address;
+  location: Address;
   coodinates: Coordinates;
   isFull: boolean;
   price: number;
-  lessee: User;
+  manager: User;
   users?: User[];
-  images?: AccommodationImage[];
+  photo?: AccommodationImage[];
   id?: string;
 }
 
 export interface Address {
+  city: string;
   street: string;
-  number: number;
+  outDoorNumber: number;
   district: string;
   state: string;
-  zipCode: string;
+  zipCode: number;
 }
 
 export interface Coordinates {
@@ -26,7 +27,5 @@ export interface Coordinates {
 }
 
 export interface AccommodationImage {
-  id: string;
-  url: string;
-  name: string;
+  photo: string;
 }
