@@ -70,12 +70,12 @@ export class AuthService {
     const user = this.searchUser(email);
     subscriber = user.valueChanges().subscribe(
       (data) => {
-        console.log(data)
+        console.log(data[0])
         if (data.length > 0) {
           this.auth.signInWithEmailAndPassword(email, password).then(
             ((res) => {
               console.log(res)
-              localStorage.setItem('user', JSON.stringify(data));
+              localStorage.setItem('user', JSON.stringify(data[0]));
             }), (error) => { console.log(error) 
             }
           );
@@ -121,5 +121,18 @@ export class AuthService {
    */
   public signOut(): void {
     this.auth.signOut();
+  }
+
+  public async resetPassword(email: string) {
+    let success: boolean;
+    await this.auth.sendPasswordResetEmail(email)
+    .then(() => {
+      console.log('Email sent')
+      success = true
+    }, (error) => {
+      console.log(error)
+      success = false;
+    })
+    return success;
   }
 }
