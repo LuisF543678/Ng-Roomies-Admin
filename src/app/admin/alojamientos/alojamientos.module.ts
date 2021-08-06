@@ -7,13 +7,15 @@ import { CreateAccommodationComponent } from './create-accommodation/create-acco
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { InfoFormComponent } from './info-form/info-form.component';
+import { AddressFormComponent } from './address-form/address-form.component';
 
 
 @NgModule({
   declarations: [
     AlojamientosComponent,
     CreateAccommodationComponent,
-    InfoFormComponent
+    InfoFormComponent,
+    AddressFormComponent
   ],
   imports: [
     CommonModule,
