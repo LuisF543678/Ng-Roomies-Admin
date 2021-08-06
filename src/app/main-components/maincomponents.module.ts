@@ -6,15 +6,24 @@ import { RegisterComponent } from './register/register.component';
 import { ResetpassComponent } from './resetpass/resetpass.component';
 import { MainRoutingModule } from './main-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ConfirmDialogComponent } from './register/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
-  declarations: [AboutComponent, LoginComponent, RegisterComponent, ResetpassComponent],
+  declarations: [AboutComponent, LoginComponent, RegisterComponent, ResetpassComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class MaincomponentsModule { }

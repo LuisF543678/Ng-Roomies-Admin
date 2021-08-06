@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<section mat-dialog-content>
+  <p>{{data.message}}</p>
+</section>
+<section mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cerrar</button>
+  <button mat-raised-button color="primary" (click)="onClose()">Ok</button>
+</section>

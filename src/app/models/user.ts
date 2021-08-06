@@ -5,17 +5,13 @@ export interface User {
     firstName: string;
     fatherSurname: string;
     motherSurname: string;
-    profileImage: string;
+    birthDate: string;
     gender: string;
-    role: UserRole;
+    admin: boolean;
     id?: string;
+    profileImage?: string;
     accommodations?: Accommodation[];
     contacts?: Contact[]; 
-}
-
-export interface UserRole {
-    name: string;
-    slugName: string;
 }
 
 export interface Contact {
