@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, SnapshotAction } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Accommodation } from '../models/accomodation';
 import { User } from '../models/user';
 
@@ -30,10 +30,28 @@ export class AccommodationService {
 
   public getAccommodationById(id: number): Observable<Accommodation> {
     return this.database.list<Accommodation>('alojamientos', ref => ref.orderByChild('id').equalTo(id))
-    .snapshotChanges().pipe(
+      .snapshotChanges().pipe(
+        map(
+          (data: SnapshotAction<Accommodation>[]) => {
+            return data[0].payload.val();
+          }
+        ));
+  }
+
+  public getAccommodationsByManager({ username }: User): Observable<Accommodation[]> {
+    return this.database.list<Accommodation>('alojamientos').snapshotChanges().pipe(
       map(
-        (data: SnapshotAction<Accommodation>[]) => {
-          return data[0].payload.val();
+        data => {
+          const newData = data.filter(action => {
+            const accommodation: Accommodation = action.payload.val();
+
+            if (accommodation.manager) {
+              return (accommodation.manager.username == username);
+            }
+
+            return false;
+          });
+          return newData.map(action => action.payload.val());
         }
       )
     );
