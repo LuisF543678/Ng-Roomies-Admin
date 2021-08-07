@@ -1,1 +1,11 @@
-<p>accommodation-details works!</p>
+<div class="container">
+  <div class="row pt-5">
+    <ng-container *ngIf="accommodation">
+      <figure class="w-100 position-relative accommodation__img-container">
+        <img class="w-100 position-absolute accommodation__img" [src]="accommodation.firstPhoto" />
+        <div class="accommodation__gradient"></div>
+        <h2 class="accommodation__title">{{ accommodation.name }}</h2>
+      </figure>
+    </ng-container>
+  </div>
+</div>
