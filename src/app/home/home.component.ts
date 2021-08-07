@@ -25,11 +25,12 @@ export class HomeComponent implements OnInit {
   
   onSubmit() {
     this.auth.signIn(this.profileForm.value.username, this.profileForm.value.password)
+    this.router.navigate(['/admin/menu']);
   }
 
   borrarS() {
     localStorage.removeItem('user');
-    //this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }

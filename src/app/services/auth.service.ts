@@ -67,13 +67,18 @@ export class AuthService {
    */
   public signIn(email: string, password: string): void {
     let subscriber: Subscription;
-    const collectionRef = this.searchUser(email);
-    subscriber = collectionRef.snapshotChanges().subscribe(
-      async (data) => {
-        const user = this.extractor.extractData(data[0]);
-        if (user) {
-          await this.auth.signInWithEmailAndPassword(email, password);
-          localStorage.setItem('user', JSON.stringify(user));
+    const user = this.searchUser(email);
+    subscriber = user.valueChanges().subscribe(
+      (data) => {
+        console.log(data[0])
+        if (data.length > 0) {
+          this.auth.signInWithEmailAndPassword(email, password).then(
+            ((res) => {
+              console.log(res)
+              localStorage.setItem('user', JSON.stringify(data[0]));
+            }), (error) => { console.log(error) 
+            }
+          );
         }
       }
     );
@@ -89,6 +94,7 @@ export class AuthService {
       const response = await this.auth.createUserWithEmailAndPassword(user.username, user.password);
       if (response) {
         delete user.password;
+        let User;
         await this.database.list<User>('users').push(user);
         const currentUser = await this.auth.currentUser;
         await currentUser.sendEmailVerification();
@@ -115,5 +121,18 @@ export class AuthService {
    */
   public signOut(): void {
     this.auth.signOut();
+  }
+
+  public async resetPassword(email: string) {
+    let success: boolean;
+    await this.auth.sendPasswordResetEmail(email)
+    .then(() => {
+      console.log('Email sent')
+      success = true
+    }, (error) => {
+      console.log(error)
+      success = false;
+    })
+    return success;
   }
 }
