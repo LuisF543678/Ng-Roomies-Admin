@@ -5,9 +5,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatLineModule, MatOptionModule, MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
-
 
 @NgModule({
   declarations: [],
@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatOptionModule,
     MatRippleModule,
+    MatSelectModule,
   ],
   exports: [
     MatButtonModule,
@@ -34,7 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatLineModule,
     MatDialogModule,
     MatOptionModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }
