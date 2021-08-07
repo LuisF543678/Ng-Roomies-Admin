@@ -2,100 +2,89 @@
   <div class="row pt-5">
     <h2>Ingresa los datos que se te piden</h2>
     <div class="col-12">
-      <mat-horizontal-stepper linear #stepper> 
-        <mat-step editable [stepControl]="form" class="w-100">
+      <mat-horizontal-stepper linear #stepper>
+        <mat-step editable [stepControl]="form" class="d-flex justify-content-center">
           <ng-template matStepLabel>Datos generales</ng-template>
-          <form [formGroup]="form" (ngSubmit)="sendInfoData()">
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Nombre del alojamiento</mat-label>
-                <input type="text" matInput placeholder="El pato mojado" formControlName="name" />
-                <ng-container *ngIf="form.get('name').errors && form.get('name').touched">
-                  <mat-error *ngIf="form.get('name').hasError('required')">El nombre del alojamiento es obligatorio.</mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Precio de las habitaciones</mat-label>
-                <input type="number" matInput formControlName="price" />
-                <ng-container *ngIf="form.get('price').errors && form.get('price').touched">
-                  <mat-error *ngIf="form.get('price').hasError('required')">El precio de las habitaciones es obligatorio
-                  </mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Cantidad de habitaciones</mat-label>
-                <input type="number" matInput formControlName="rooms" />
-                <ng-container *ngIf="form.get('rooms').errors && form.get('rooms').touched">
-                  <mat-error *ngIf="form.get('rooms').hasError('required')">La cantidad de habitaciones disponibles es
-                    obiglatorio.</mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Primer dia de atención de la semana</mat-label>
-                <mat-select matInput formControlName="startDay">
-                  <mat-option value="lunes">Lunes</mat-option>
-                  <mat-option value="martes">Martes</mat-option>
-                  <mat-option value="miercoles">Miércoles</mat-option>
-                  <mat-option value="jueves">Jueves</mat-option>
-                  <mat-option value="viernes">Viernes</mat-option>
-                  <mat-option value="sabado">Sábado</mat-option>
-                  <mat-option value="domingo">Domingo</mat-option>
-                </mat-select>
-                <ng-container *ngIf="form.get('startDay').errors && form.get('startDay').touched">
-                  <mat-error *ngIf="form.get('startDay').hasError('required')">El primer día de horario de atención es
-                    obligatorio.</mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Último día del horario de atención</mat-label>
-                <mat-select matInput formControlName="endDay">
-                  <mat-option value="lunes">Lunes</mat-option>
-                  <mat-option value="martes">Martes</mat-option>
-                  <mat-option value="miercoles">Miércoles</mat-option>
-                  <mat-option value="jueves">Jueves</mat-option>
-                  <mat-option value="viernes">Viernes</mat-option>
-                  <mat-option value="sabado">Sábado</mat-option>
-                  <mat-option value="domingo">Domingo</mat-option>
-                </mat-select>
-                <ng-container *ngIf="form.get('endDay').errors && form.get('endDay').touched">
-                  <mat-error *ngIf="form.get('endDay').hasError('required')">El último día de horiario de atención es obiglatorio.
-                  </mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Primer hora del horario de atención</mat-label>
-                <input type="time" matInput formControlName="startHour" />
-                <ng-container *ngIf="form.get('startHour').errors && form.get('startHour').touched">
-                  <mat-error *ngIf="form.get('startHour').hasError('required')">La primer hora del horario de atención.
-                  </mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Última hora del horario de atención</mat-label>
-                <input type="time" matInput formControlName="endHour" />
-                <ng-container *ngIf="form.get('endHour').errors && form.get('endHour').touched">
-                  <mat-error *ngIf="form.get('endHour').hasError('required')">La última hora del horario de atención.</mat-error>
-                </ng-container>
-              </mat-form-field>
-            </p>
+          <form [formGroup]="form" (ngSubmit)="sendInfoData()" class="w-80">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre del alojamiento</mat-label>
+              <input type="text" matInput placeholder="El pato mojado" formControlName="name" />
+              <ng-container *ngIf="form.get('name').errors && form.get('name').touched">
+                <mat-error *ngIf="form.get('name').hasError('required')">El nombre del alojamiento es obligatorio.
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Precio de las habitaciones</mat-label>
+              <input type="number" matInput formControlName="price" />
+              <ng-container *ngIf="form.get('price').errors && form.get('price').touched">
+                <mat-error *ngIf="form.get('price').hasError('required')">El precio de las habitaciones es obligatorio
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Cantidad de habitaciones</mat-label>
+              <input type="number" matInput formControlName="rooms" />
+              <ng-container *ngIf="form.get('rooms').errors && form.get('rooms').touched">
+                <mat-error *ngIf="form.get('rooms').hasError('required')">La cantidad de habitaciones disponibles es
+                  obiglatorio.</mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Primer dia de atención de la semana</mat-label>
+              <mat-select matInput formControlName="startDay">
+                <mat-option value="lunes">Lunes</mat-option>
+                <mat-option value="martes">Martes</mat-option>
+                <mat-option value="miercoles">Miércoles</mat-option>
+                <mat-option value="jueves">Jueves</mat-option>
+                <mat-option value="viernes">Viernes</mat-option>
+                <mat-option value="sabado">Sábado</mat-option>
+                <mat-option value="domingo">Domingo</mat-option>
+              </mat-select>
+              <ng-container *ngIf="form.get('startDay').errors && form.get('startDay').touched">
+                <mat-error *ngIf="form.get('startDay').hasError('required')">El primer día de horario de atención es
+                  obligatorio.</mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Último día del horario de atención</mat-label>
+              <mat-select matInput formControlName="endDay">
+                <mat-option value="lunes">Lunes</mat-option>
+                <mat-option value="martes">Martes</mat-option>
+                <mat-option value="miercoles">Miércoles</mat-option>
+                <mat-option value="jueves">Jueves</mat-option>
+                <mat-option value="viernes">Viernes</mat-option>
+                <mat-option value="sabado">Sábado</mat-option>
+                <mat-option value="domingo">Domingo</mat-option>
+              </mat-select>
+              <ng-container *ngIf="form.get('endDay').errors && form.get('endDay').touched">
+                <mat-error *ngIf="form.get('endDay').hasError('required')">El último día de horiario de atención es
+                  obiglatorio.
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Primer hora del horario de atención</mat-label>
+              <input type="time" matInput formControlName="startHour" />
+              <ng-container *ngIf="form.get('startHour').errors && form.get('startHour').touched">
+                <mat-error *ngIf="form.get('startHour').hasError('required')">La primer hora del horario de atención.
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Última hora del horario de atención</mat-label>
+              <input type="time" matInput formControlName="endHour" />
+              <ng-container *ngIf="form.get('endHour').errors && form.get('endHour').touched">
+                <mat-error *ngIf="form.get('endHour').hasError('required')">La última hora del horario de atención.
+                </mat-error>
+              </ng-container>
+            </mat-form-field>
             <button type="submit" mat-raised-button color="primary" matStepperNext>Siguiente</button>
           </form>
         </mat-step>
-        <mat-step editable [stepControl]="form">
+        <mat-step editable [stepControl]="form" class="d-flex justify-content-center">
           <ng-template matStepLabel>Dirección</ng-template>
-          <form [formGroup]="addressForm">
+          <form [formGroup]="addressForm" class="w-80">
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Calle</mat-label>
               <input matInput type="text" formControlName="street" />
@@ -107,21 +96,24 @@
               <mat-label>Número exterior</mat-label>
               <input matInput type="text" formControlName="outdoorNumber" />
               <ng-container *ngIf="addressForm.get('outdoorNumber').errors && addressForm.get('outdoorNumber').touched">
-                <mat-error *ngIf="addressForm.get('outdoorNumber').hasError('required')">El número exterior es obligatorio</mat-error>
+                <mat-error *ngIf="addressForm.get('outdoorNumber').hasError('required')">El número exterior es
+                  obligatorio</mat-error>
               </ng-container>
             </mat-form-field>
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Colonia</mat-label>
               <input matInput type="text" formControlName="district" />
               <ng-container *ngIf="addressForm.get('district').errors && addressForm.get('district').touched">
-                <mat-error *ngIf="addressForm.get('district').hasError('required')">La colonia es obligatoria.</mat-error>
+                <mat-error *ngIf="addressForm.get('district').hasError('required')">La colonia es obligatoria.
+                </mat-error>
               </ng-container>
             </mat-form-field>
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Código postal</mat-label>
               <input matInput type="text" formControlName="zipCode" />
               <ng-container *ngIf="addressForm.get('zipCode').errors && addressForm.get('zipCode').touched">
-                <mat-error *ngIf="addressForm.get('zipCode').hasError('required')">El código postal es obligatorio.</mat-error>
+                <mat-error *ngIf="addressForm.get('zipCode').hasError('required')">El código postal es obligatorio.
+                </mat-error>
               </ng-container>
             </mat-form-field>
             <mat-form-field class="w-100" appearance="fill">
@@ -139,12 +131,16 @@
               </ng-container>
             </mat-form-field>
             <button mat-button matStepperPrevious>Atrás</button>
-            <button type="submit" mat-raised-button color="primary" matStepperNext>Siguiente</button>
+            <button type="submit" mat-raised-button color="primary" matStepperNext (click)="createAccommodation()">Siguiente</button>
           </form>
         </mat-step>
-        <mat-step editable [stepControl]="form">
+        <!-- <mat-step editable [stepControl]="form">
           <ng-template matStepLabel>Coordenadas</ng-template>
-        </mat-step>
+          <form>
+
+          </form>
+          
+        </mat-step> -->
       </mat-horizontal-stepper>
     </div>
   </div>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Accommodation, createEmptyAccommodation } from 'src/app/models/accomodation';
+import { Accommodation, Coordinates, createEmptyAccommodation } from 'src/app/models/accomodation';
+import { AddressFormData } from 'src/app/models/vo/addressFormData';
 import { InformationFormData } from 'src/app/models/vo/InformationFormData';
+import { AccommodationService } from 'src/app/services/accommodation.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-accommodation',
@@ -13,8 +16,16 @@ export class CreateAccommodationComponent implements OnInit {
   addressForm: FormGroup;
   coordinatesForm: FormGroup;
   accommodation: Accommodation = createEmptyAccommodation();
+  coordinates: Coordinates = {
+    latitude: 18.4796894,
+    longitude:-97.3839689
+  };
 
-  constructor(private builder: FormBuilder) {
+  constructor(
+    private builder: FormBuilder,
+    private authService: AuthService,
+    private accommodationService: AccommodationService,
+  ) {
     this.initForms();
   }
 
@@ -61,6 +72,24 @@ export class CreateAccommodationComponent implements OnInit {
   }
 
   sendAddressData(): void {
+    const data: AddressFormData = this.addressForm.value;
+    this.accommodation.location = data;
+  }
 
+  createAccommodation(): void {
+    this.sendAddressData();
+    const currentUser = this.authService.getCurrentUser();
+    const { admin, firstName, fatherSurname, motherSurname, username, gender, birthDate } = currentUser;
+
+    this.accommodation.coordinates = this.coordinates;
+    this.accommodationService.createAccommodation(this.accommodation, {
+      firstName,
+      fatherSurname,
+      motherSurname,
+      username,
+      admin,
+      gender,
+      birthDate
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { AddressFormData } from "./vo/addressFormData";
 
 export function createEmptyAccommodation(): Accommodation {
   return {
@@ -38,7 +39,7 @@ export function createEmptyAccommodation(): Accommodation {
 
 export interface Accommodation {
   name: string;
-  location: Address;
+  location: Address | AddressFormData;
   coordinates: Coordinates;
   isFull: boolean;
   price: number;
