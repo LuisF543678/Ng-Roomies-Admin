@@ -38,7 +38,8 @@ const routes: Routes = [
 
   },
   {
-    path: 'alojamientos', component: AlojamientosComponent
+    path: 'alojamientos',
+    loadChildren: () => import('./alojamientos/alojamientos.module').then(m => m.AlojamientosModule),
   }
 ]
 @NgModule({
