@@ -131,16 +131,26 @@
               </ng-container>
             </mat-form-field>
             <button mat-button matStepperPrevious>Atrás</button>
-            <button type="submit" mat-raised-button color="primary" matStepperNext (click)="createAccommodation()">Siguiente</button>
+            <button mat-raised-button color="primary" matStepperNext (click)="sendAddressData()">Siguiente</button>
           </form>
         </mat-step>
-        <!-- <mat-step editable [stepControl]="form">
-          <ng-template matStepLabel>Coordenadas</ng-template>
-          <form>
-
+        <mat-step editable [stepControl]="photoForm">
+          <ng-template matStepLabel>Foto del alojamiento</ng-template>
+          <form [formGroup]="photoForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Agrega una foto</mat-label>
+              <input type="file" matInput formControlName="firstPhoto" accept=".png, .jpeg, .jpg, .wmp" (change)="onChange($event)" />
+              <ng-container *ngIf="photoForm.get('firstPhoto').errors && photoForm.get('firstPhoto').touched">
+                <mat-error *ngIf="photoForm.get('firstPhoto').hasError('required')">Al menos una foto es necesaria.</mat-error>
+              </ng-container>
+            </mat-form-field>
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-raised-button color="primary" (click)="createAccommodation()">Crear alojamiento</button>
           </form>
-          
-        </mat-step> -->
+          <figure *ngIf="photoPreview">
+            <img [src]="photoPreview" alt="preview_photo" />
+          </figure>
+        </mat-step>
       </mat-horizontal-stepper>
     </div>
   </div>

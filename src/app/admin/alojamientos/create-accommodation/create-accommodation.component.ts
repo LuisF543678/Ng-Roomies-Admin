@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/main-components/register/confirm-dialog/confirm-dialog.component';
 import { Accommodation, Coordinates, createEmptyAccommodation } from 'src/app/models/accomodation';
 import { AddressFormData } from 'src/app/models/vo/addressFormData';
 import { InformationFormData } from 'src/app/models/vo/InformationFormData';
@@ -14,7 +17,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CreateAccommodationComponent implements OnInit {
   form: FormGroup;
   addressForm: FormGroup;
-  coordinatesForm: FormGroup;
+  photoForm: FormGroup;
+  photoPreview: string | ArrayBuffer;
+
   accommodation: Accommodation = createEmptyAccommodation();
   coordinates: Coordinates = {
     latitude: 18.4796894,
@@ -25,6 +30,8 @@ export class CreateAccommodationComponent implements OnInit {
     private builder: FormBuilder,
     private authService: AuthService,
     private accommodationService: AccommodationService,
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.initForms();
   }
@@ -52,10 +59,9 @@ export class CreateAccommodationComponent implements OnInit {
       state: ['', [Validators.required]],
     });
 
-    this.coordinatesForm = this.builder.group({
-      latitude: ['', [Validators.required]],
-      longitude: ['', [Validators.required]]
-    }); 
+    this.photoForm = this.builder.group({
+      firstPhoto: ['', [Validators.required]]
+    });
    
   }
 
@@ -76,8 +82,22 @@ export class CreateAccommodationComponent implements OnInit {
     this.accommodation.location = data;
   }
 
-  createAccommodation(): void {
-    this.sendAddressData();
+  onChange(event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.photoPreview = reader.result;
+    }
+  }
+
+  async uploadPhoto(): Promise<void> {
+    const url = await this.accommodationService.addFirstPhoto(this.photoForm.get('firstPhoto').value);
+    this.accommodation.firstPhoto = url
+  }
+
+  async createAccommodation(): Promise<void> {
+    await this.uploadPhoto();
     const currentUser = this.authService.getCurrentUser();
     const { admin, firstName, fatherSurname, motherSurname, username, gender, birthDate } = currentUser;
 
@@ -91,5 +111,23 @@ export class CreateAccommodationComponent implements OnInit {
       gender,
       birthDate
     });
+
+    this.form.reset();
+    this.addressForm.reset();
+    
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Felicidades',
+        message: 'Has creado un alojamiento',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        console.log('Mensaje cerrado');
+        this.router.navigate(['/admin', 'alojamientos']);
+      },
+      console.error
+    );
   }
 }

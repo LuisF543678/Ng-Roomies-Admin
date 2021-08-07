@@ -4,6 +4,7 @@ import { AddressFormData } from "./vo/addressFormData";
 export function createEmptyAccommodation(): Accommodation {
   return {
     name: '',
+    firstPhoto: '',
     location: {
       city: '',
       district: '',
@@ -41,6 +42,7 @@ export interface Accommodation {
   name: string;
   location: Address | AddressFormData;
   coordinates: Coordinates;
+  firstPhoto: string;
   isFull: boolean;
   price: number;
   manager: User;
