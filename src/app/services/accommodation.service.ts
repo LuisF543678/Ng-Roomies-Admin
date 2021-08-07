@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, SnapshotAction } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Accommodation } from '../models/accomodation';
 import { User } from '../models/user';
 
@@ -24,5 +26,24 @@ export class AccommodationService {
     const response = this.storage.ref(`photos/${id}`).put(file);
     const ref = (await response).ref
     return await ref.getDownloadURL();
+  }
+
+  public getAccommodationsByManager({username}: User): Observable<Accommodation[]> {
+    return this.database.list<Accommodation>('alojamientos').snapshotChanges().pipe(
+      map(
+        data => {
+          const newData = data.filter(action => { 
+            const accommodation: Accommodation = action.payload.val();
+            
+            if (accommodation.manager) {
+              return (accommodation.manager.username == username);
+            }
+
+            return false;
+          });
+          return newData.map(action => action.payload.val());
+        }
+      )
+    );
   }
 }

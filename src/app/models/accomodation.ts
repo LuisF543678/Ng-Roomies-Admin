@@ -17,7 +17,7 @@ export function createEmptyAccommodation(): Accommodation {
       latitude: 0,
       longitude: 0
     },
-    isFull: true,
+    isFull: false,
     manager: {
       admin: false,
       birthDate: '',
@@ -42,15 +42,15 @@ export interface Accommodation {
   name: string;
   location: Address | AddressFormData;
   coordinates: Coordinates;
-  firstPhoto: string;
   isFull: boolean;
   price: number;
   manager: User;
   rooms: number;
   schedule: Schedule;
+  firstPhoto?: string;
   users?: User[];
   photo?: AccommodationImage[];
-  id?: string;
+  id?: number;
 }
 
 export interface Address {

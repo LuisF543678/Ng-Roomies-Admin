@@ -102,6 +102,7 @@ export class CreateAccommodationComponent implements OnInit {
     const { admin, firstName, fatherSurname, motherSurname, username, gender, birthDate } = currentUser;
 
     this.accommodation.coordinates = this.coordinates;
+    this.accommodation.id = Date.now();
     this.accommodationService.createAccommodation(this.accommodation, {
       firstName,
       fatherSurname,
