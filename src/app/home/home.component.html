@@ -46,10 +46,12 @@
                 <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
                 <input type="password" formControlName="password" class="form-control bg-dark-x mb-2" placeholder="Ingresa tu contraseña">
                 <br>
+              </div>
+              <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary w-100">Iniciar sesión</button>
+              <div class="text-center">
                 <a routerLink="webcreateorreset/reset-password" id="emailHelp" class="form-text text-decoration-none reset">¿Has olvidado tu
                   contraseña?</a>
               </div>
-              <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary w-100">Iniciar sesión</button>
             </form>
  <!-- <button (click)="borrarS()">Borrar local storage</button>
              <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
@@ -60,7 +62,7 @@
                   class="fab fa-facebook-f lead mr-2"></i> Facebook</button>
             </div> -->
             <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100">
-              <h6 class="d-inline-block mb-0">¿Todavia no tienes una cuenta?</h6>
+              <h6 class="d-inline-block mb-0">¿Todavia no tienes una cuenta?</h6><br>
               <a class="font-weight-bold text-decoration-none" [routerLink]="['/webcreateorreset','createAccount']">Crea una ahora</a>
             </div>
           </div>

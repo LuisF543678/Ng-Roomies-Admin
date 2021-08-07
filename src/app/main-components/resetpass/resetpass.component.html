@@ -61,17 +61,18 @@
       </div>
       <div class="modal-body">
 
-        <div *ngIf="data!== undefined; else elseBlock">
-          Se ha enviado el codigo de verificacion a<br>
-          <strong>{{resetForm.value.email}}</strong>
-        </div>
-        <ng-template #elseBlock>
+        <div *ngIf="data== false; else elseBlock">
+
           <div class="text-center">
             <img class="waralert" src="https://media.tenor.com/images/70584b7a6c3869052d61ae59dcbf9632/tenor.gif"
               alt="">
             <h4 class="alert-heading text-primary">Oh no! el correo que enviaste es invalido </h4>
 
           </div>
+        </div>
+        <ng-template #elseBlock>
+          Se ha enviado el codigo de verificacion a<br>
+          <strong>{{resetForm.value.email}}</strong>
         </ng-template>
 
       </div>

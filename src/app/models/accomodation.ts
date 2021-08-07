@@ -1,23 +1,65 @@
 import { User } from "./user";
+import { AddressFormData } from "./vo/addressFormData";
+
+export function createEmptyAccommodation(): Accommodation {
+  return {
+    name: '',
+    firstPhoto: '',
+    location: {
+      city: '',
+      district: '',
+      outDoorNumber: 0,
+      state: '',
+      street: '',
+      zipCode: 0
+    },
+    coordinates: {
+      latitude: 0,
+      longitude: 0
+    },
+    isFull: true,
+    manager: {
+      admin: false,
+      birthDate: '',
+      fatherSurname: '',
+      firstName: '',
+      gender: '',
+      motherSurname: '',
+      username: '',
+    },
+    price: 0,
+    rooms: 0,
+    schedule: {
+      endDay: '',
+      endHour: '',
+      startDay: '',
+      startHour: ''
+    }
+  }
+}
 
 export interface Accommodation {
   name: string;
-  address: Address;
-  coodinates: Coordinates;
+  location: Address | AddressFormData;
+  coordinates: Coordinates;
+  firstPhoto: string;
   isFull: boolean;
   price: number;
-  lessee: User;
+  manager: User;
+  rooms: number;
+  schedule: Schedule;
   users?: User[];
-  images?: AccommodationImage[];
+  photo?: AccommodationImage[];
   id?: string;
 }
 
 export interface Address {
+  city: string;
   street: string;
-  number: number;
+  outDoorNumber: number;
   district: string;
   state: string;
-  zipCode: string;
+  zipCode: number;
 }
 
 export interface Coordinates {
@@ -26,7 +68,12 @@ export interface Coordinates {
 }
 
 export interface AccommodationImage {
-  id: string;
-  url: string;
-  name: string;
+  photo: string;
+}
+
+export interface Schedule {
+  startDay: string;
+  endDay: string;
+  startHour: string;
+  endHour: string;
 }
