@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row pt-5">
-    <ng-container *ngIf="accommodation">
+    <ng-container *ngIf="accommodation" class="mb-2">
       <figure class="w-100 position-relative accommodation__img-container">
         <img class="w-100 position-absolute accommodation__img" [src]="accommodation.firstPhoto" />
         <div class="accommodation__gradient"></div>
         <h2 class="accommodation__title">{{ accommodation.name }}</h2>
       </figure>
+      <app-general-form [accommodation]="accommodation" class="w-100"></app-general-form>
     </ng-container>
   </div>
 </div>
