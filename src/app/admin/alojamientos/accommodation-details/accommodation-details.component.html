@@ -1,5 +1,9 @@
 <div class="container">
   <div class="row pt-5">
+    <a [routerLink]="['/admin','alojamientos']" class="d-flex align-items-center">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      Regresar
+    </a>
     <ng-container *ngIf="accommodation" class="mb-2">
       <figure class="w-100 position-relative accommodation__img-container">
         <img class="w-100 position-absolute accommodation__img" [src]="accommodation.firstPhoto" />
