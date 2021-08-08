@@ -35,4 +35,15 @@ export class GeneralFormComponent implements OnInit {
     this.form.disable();
   }
 
+  enableForm(): void {
+    this.form.enable();
+  }
+
+  disableForm(): void {
+    this.form.disable();
+  }
+
+  saveChanges(): void {
+    
+  }
 }
