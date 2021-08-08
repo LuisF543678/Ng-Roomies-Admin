@@ -5,6 +5,10 @@
         <img class="w-100 position-absolute accommodation__img" [src]="accommodation.firstPhoto" />
         <div class="accommodation__gradient"></div>
         <h2 class="accommodation__title">{{ accommodation.name }}</h2>
+        <button class="accommodation__photo-button" mat-button (click)="openPickUpDialog()">
+          <mat-icon>edit</mat-icon>
+          Cambiar foto principal
+        </button>
       </figure>
       <app-general-form [accommodation]="accommodation" class="w-100"></app-general-form>
       <app-address-form [accommodation]="accommodation" class="w-100"></app-address-form>

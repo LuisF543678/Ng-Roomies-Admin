@@ -24,3 +24,12 @@
   bottom: 1rem;
   left: 1rem;
 }
+
+.accommodation__photo-button {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  background-color: transparent;
+  bottom: 1rem;
+  right: 1rem;
+}

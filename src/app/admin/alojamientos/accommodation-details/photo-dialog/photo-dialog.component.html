@@ -1,1 +1,19 @@
-<p>photo-dialog works!</p>
+<h1 mat-dialog-title>Elige una nueva foto</h1>
+<section mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Elige una foto</mat-label>
+        <input type="file" accept=".png, .jpg, .jpeg, .wmp" matInput formControlName="photo" (change)="onChange($event)">
+        <ng-container *ngIf="form.get('photo').errors && form.get('photo').touched">
+          <mat-error *ngIf="form.get('photo').hasError('required')">Debes elegir una foto</mat-error>
+        </ng-container>
+      </mat-form-field>
+    </form>
+    <figure class="w-100" *ngIf="preview">
+      <img [src]="preview" alt="preview_photo" class="w-100" />
+    </figure>
+</section>
+<section mat-dialog-actions>
+  <button mat-button color="warn" (click)="closeDialog()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="uploadPhoto()">Subir foto</button>
+</section>
