@@ -33,7 +33,9 @@ export class AccommodationService {
       .snapshotChanges().pipe(
         map(
           (data: SnapshotAction<Accommodation>[]) => {
-            return data[0].payload.val();
+            const accommodation = data[0].payload.val();
+            accommodation.key = data[0].key;
+            return accommodation;
           }
         ));
   }
@@ -55,5 +57,9 @@ export class AccommodationService {
         }
       )
     );
+  }
+
+  public async updateAccommodation(accommodation: Accommodation): Promise<void> {
+    await this.database.database.ref(`alojamientos/${accommodation.key}`).update(accommodation);
   }
 }

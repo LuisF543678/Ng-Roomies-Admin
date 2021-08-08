@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/main-components/register/confirm-dialog/confirm-dialog.component';
 import { Accommodation } from 'src/app/models/accomodation';
+import { AccommodationService } from 'src/app/services/accommodation.service';
 
 @Component({
   selector: 'app-general-form',
@@ -15,6 +18,8 @@ export class GeneralFormComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
+    private accommodationService: AccommodationService,
+    private dialog: MatDialog,
   ) {
   }
   
@@ -34,5 +39,47 @@ export class GeneralFormComponent implements OnInit {
     });
     this.form.disable();
   }
+
+  enableForm(): void {
+    this.form.enable();
+  }
+
+  disableForm(): void {
+    this.form.disable();
+  }
+
+  updateAccommodationModel(): void {
+    this.accommodation.name = this.form.get('name').value;
+    this.accommodation.price = this.form.get('price').value;
+    this.accommodation.rooms = this.form.get('rooms').value;
+    this.accommodation.schedule.startDay = this.form.get('startDay').value;
+    this.accommodation.schedule.endDay = this.form.get('endDay').value;
+    this.accommodation.schedule.startHour = this.form.get('startHour').value;
+    this.accommodation.schedule.endHour = this.form.get('endHour').value;
+  }
+
+  async saveChanges(): Promise<void> {
+    this.updateAccommodationModel();
+    await this.accommodationService.updateAccommodation(this.accommodation);
+    
+    const dialogRef = this.dialog.open(
+      ConfirmDialogComponent,
+      {
+        data: {
+          title: 'Felicidades',
+          message: 'Se ha actualizado la información general'
+        }
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(
+      () => {
+        console.log('Dialog closed');
+        this.disableForm();
+      },
+      console.error
+    );
+  }
+
 
 }

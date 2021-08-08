@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { GeneralFormComponent } from './accommodation-details/general-form/general-form.component';
 import { AddressFormComponent } from './accommodation-details/address-form/address-form.component';
+import { PhotoDialogComponent } from './accommodation-details/photo-dialog/photo-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AddressFormComponent } from './accommodation-details/address-form/addre
     AccommodationDetailsComponent,
     GeneralFormComponent,
     AddressFormComponent,
+    PhotoDialogComponent,
   ],
   imports: [
     CommonModule,
