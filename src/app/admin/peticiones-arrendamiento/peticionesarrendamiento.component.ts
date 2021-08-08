@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RequestsService } from 'src/app/services/requests.service';
+import { PeticionesService } from '../services/peticiones.service';
+
+import { User } from 'src/app/models/user';
+import { map } from 'rxjs/operators';
+import { Accommodation } from 'src/app/models/accomodation';
 
 @Component({
   selector: 'app-peticionesarrendamiento',
@@ -18,58 +22,40 @@ export class PeticionesarrendamientoComponent implements OnInit {
   messageform: FormGroup;
   error: boolean;
 
+  alojamientoList: Accommodation[];
 
-  constructor(private requestService: RequestsService, private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private peticiones: PeticionesService) {
+    
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.loader = true;
     }, 1000);
-    //this.getRequest(this.accommodation_id);
-    /*  this.requestService.getRequestsAccommodation(this.id).subscribe(data => {
-       console.log(data);
-       this.requests_Accommodation = data;
-     }); */
 
-    this.messageform = this.fb.group({
-      'reason': new FormControl('', [Validators.required]),
-    });
-
-
+    /* 
+        this.messageform = this.fb.group({
+          'reason': new FormControl('', [Validators.required]),
+        });
+     */
+    this.mostrarAlojamientos();
   }
 
-
-
-  getRequest(accommodation_id: any): void {
-    this.requestService.getRequestsAccommodation(accommodation_id).subscribe(res => {
-      console.log(res);
-      this.requests_Accommodation = this.Accommodation;
+mostrarAlojamientos() {
+  this.peticiones.getAlojamientos().snapshotChanges().subscribe(item => {
+    this.alojamientoList=[];
+    item.forEach(element =>{
+      let x = element.payload.toJSON();
+      x["$keyRegistro"] = element.key;
+      this.alojamientoList.push(x as Accommodation);
     });
-  }
-
+  }); 
+}
+  
   signOff() {
     localStorage.removeItem('user');
-    //this.router.navigate(['/']);
   }
 
 
-  sendMessage() {
-    /* console.log(this.messageform.value);
-    this.accommodation_id = this.messageform.value;
-    if (this.messageform.valid) {
-      this.requestService.RejectRequests().subscribe(
-        (resp) => {
-          console.warn(this.messageform.value);
-        },
-        err => {
-          console.error(err);
-          this.error = true;
-
-        }
-
-      );
-    }
-     */
-  }
 
 }

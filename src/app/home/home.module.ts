@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -13,4 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+  
+ }

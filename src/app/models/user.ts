@@ -1,27 +1,20 @@
-export class User {
-    constructor(
-        public ID: number,
-        public UUID: string,
-        public user_name: string,
-        public name: string,
-        public father_surname: string,
-        public mother_surname: string,
-        public ProfileImage: string,
-        public user_role_id: number,
-        public gender: string,
-        public UserRole: UserRole
-    ) {}
+import { Accommodation } from "./accomodation";
 
-    static createVoid(): User {
-        const role = new UserRole(0,'','');
-        return new User(0, '', '', '', '','','',0,'',role);
-    }
+export interface User {
+    username: string;
+    firstName: string;
+    fatherSurname: string;
+    motherSurname: string;
+    birthDate: string;
+    gender: string;
+    admin: boolean;
+    id?: string;
+    profileImage?: string;
+    accommodations?: Accommodation[];
+    contacts?: Contact[]; 
 }
 
-export class UserRole {
-    constructor(
-        public ID: number,
-        public Name: string,
-        public SlugName: string
-    ) {}
+export interface Contact {
+    name: string;
+    value: string;
 }

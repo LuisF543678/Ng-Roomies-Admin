@@ -44,7 +44,7 @@
             <div class="text-center" *ngFor="let request of requests_Accommodation">
                 <p>{{request.User.user_name}}</p>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <aside class="col-sm-4">
                     <div class="card">
                         <article class="card-body">
@@ -112,9 +112,16 @@
                     <!--  <div class="text-center" *ngFor="let request of requests_Accommodation">
                         <p>{{}}</p>
                     </div> -->
+<!-- 
+                </aside> -->
+<!-- 
+            </div> --> -->
 
-                </aside>
-            </div>
+            <div>
+               <tr *ngFor="let alojamientolist of alojamientoList">
+                    <td>{{alojamientolist.name}}</td>
+               </tr>
+              </div>
         </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

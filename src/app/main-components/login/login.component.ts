@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { HttpClientService } from 'src/app/services/http-client.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +13,13 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private user: UserService, private httpClient: HttpClientService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
-  //NO ES ESTE
 
   onSubmit() {
-    // console.log(this.profileForm.value);
-    // let val = this.httpClient.get('https://reqres.in/api/user');
-    // console.log(val);
-    this.user.auth(this.profileForm.value).subscribe((res: any) => {
-      console.log(res);
-      res.success ? localStorage.setItem('user', atob(res.data)) : console.log('Fallo en el inicio de sesión');
-    });
+    
   }
 
 }

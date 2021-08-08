@@ -1,0 +1,109 @@
+<div class="row w-100 mb-5">
+  <form [formGroup]="form" class="col-12" (ngSubmit)="saveChanges()">
+      <div class="container">
+        <fieldset>
+          <legend>Información general</legend>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Nombre del alojamiento</mat-label>
+              <input type="text" matInput formControlName="name">
+              <ng-container *ngIf="form.get('name').errors && form.get('name').touched">
+                <mat-error *ngIf="form.get('name').hasError('required')">El nombre del alojamiento no debe estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Precio de las habitaciones</mat-label>
+              <input type="number" matInput formControlName="price">
+              <ng-container *ngIf="form.get('price').errors && form.get('price').touched">
+                <mat-error *ngIf="form.get('price').hasError('required')">El precio no debe estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Cantidad de habitaciones disponibles</mat-label>
+              <input type="number" matInput formControlName="rooms" >
+              <ng-container *ngIf="form.get('rooms').errors && form.get('rooms').touched">
+                <mat-error *ngIf="form.get('rooms').hasError('required')">La cantidad de habitaciones disponibles no debe estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Cantidad de habitaciones disponibles</mat-label>
+              <input type="number" matInput formControlName="rooms" >
+              <ng-container *ngIf="form.get('rooms').errors && form.get('rooms').touched">
+                <mat-error *ngIf="form.get('rooms').hasError('required')">La cantidad de habitaciones disponibles no debe estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Día de inicio del servicio al cliente</mat-label>
+              <mat-select matInput formControlName="startDay" >
+                <mat-option value="lunes">Lunes</mat-option>
+                <mat-option value="martes">Martes</mat-option>
+                <mat-option value="miercoles">Miércoles</mat-option>
+                <mat-option value="jueves">Jueves</mat-option>
+                <mat-option value="viernes">Viernes</mat-option>
+                <mat-option value="sabado">Sábado</mat-option>
+                <mat-option value="domingo">Domingo</mat-option>
+              </mat-select>
+              <ng-container *ngIf="form.get('startDay').errors && form.get('startDay').touched">
+                <mat-error *ngIf="form.get('startDay').hasError('required')">El día de inicio de servicio al cliente no puede estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Ultimo día del servicio al cliente</mat-label>
+              <mat-select matInput formControlName="endDay" >
+                <mat-option value="lunes">Lunes</mat-option>
+                <mat-option value="martes">Martes</mat-option>
+                <mat-option value="miercoles">Miércoles</mat-option>
+                <mat-option value="jueves">Jueves</mat-option>
+                <mat-option value="viernes">Viernes</mat-option>
+                <mat-option value="sabado">Sábado</mat-option>
+                <mat-option value="domingo">Domingo</mat-option>
+              </mat-select>
+              <ng-container *ngIf="form.get('endDay').errors && form.get('endDay').touched">
+                <mat-error *ngIf="form.get('endDay').hasError('required')">El último día de servicio al cliente no puede estar vacío.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Hora de inicio del servicio al cliente</mat-label>
+              <input type="time" formControlName="startHour" matInput  />
+              <ng-container *ngIf="form.get('startHour').errors && form.get('startHour').touched">
+                <mat-error *ngIf="form.get('startHour').hasError('required')">La hora de inicio del servicio al cliente no debe estar vacía.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="w-100">
+              <mat-label>Hora final del servicio al cliente</mat-label>
+              <input type="time" formControlName="endHour" matInput  />
+              <ng-container *ngIf="form.get('endHour').errors && form.get('endHour').touched">
+                <mat-error *ngIf="form.get('endHour').hasError('required')">La hora final del servicio al cliente no debe estar vacía.</mat-error>
+              </ng-container>
+            </mat-form-field>
+          </p>
+          <button mat-button (click)="enableForm()" *ngIf="form.disabled">
+            <mat-icon>edit</mat-icon>
+            Editar
+          </button>
+          <button mat-raised-button color="primary" *ngIf="form.enabled" type="submit">
+            <mat-icon>save</mat-icon>
+            Guardar cambios
+          </button>
+          <button mat-button (click)="disableForm()" *ngIf="form.enabled">
+            <mat-icon>close</mat-icon>
+            Cancelar
+          </button>
+        </fieldset>
+      </div>
+  </form>
+</div>

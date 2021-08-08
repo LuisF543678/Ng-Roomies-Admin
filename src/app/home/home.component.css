@@ -1,82 +1,117 @@
 body {
-    font-weight: 300;
-    color: var(--light);
+	font-weight: 300;
+	color: var(--light);
 }
 
-.text-light { color: var(--light) !important; }
-.bg-dark { background-color: var(--dark) !important; }
-.bg-dark-x { background-color: var(--dark-x); }
+.home {
+	background-color: white;
+}
+
+
+/* section {
+    background-color: white;
+}
+ */
+
+.text-light {
+	color: var(--light) !important;
+}
+
+.bg-dark {
+	background-color: var(--dark) !important;
+}
+
+.bg-dark-x {
+	background-color: var(--dark-x);
+}
 
 .btn {
-    min-height: 3.125rem;
-    font-weight: 600;
+	min-height: 3.125rem;
+	font-weight: 600;
 }
 
 .form-control {
-    min-height: 3.125rem;
-    line-height: initial;
+	min-height: 3.125rem;
+	line-height: initial;
 }
+
 .form-control:focus {
-    background-color: var(--dark-x);
-    outline: none;
+	background-color: var(--dark-x);
+	outline: none;
 }
 
 .img-1 {
-    background-image: url('/assets/img/sofa.png');
-    background-size: cover;
-    background-position: center;
+	background-image: url('/assets/img/sofa-girl.jpg');
+	background-size: 100% 90%;
+	background-position: center;
 }
 
 .img-2 {
-    background-image: url('/assets/img/sofa2.png');
-    background-size: cover;
-    background-position: center;
+	background-image: url('/assets/img/sofa-guy.jpg');
+	/* background-size: cover; */
+	background-size: 100% 90%;
+	background-position: center;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	filter: invert(70%);
 }
 
 .reset {
-    font-weight: bold;
-    color: #343a40;
+	font-weight: bold;
+	color: #343a40;
 }
 
 input {
-    border-radius: 9px;
-    border-radius: 1rem;
+	border-radius: 9px;
+	border-radius: 1rem;
 }
 
-h1, h2, h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+h1,
+h2,
+h3 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: bold;
 }
-
 
 .res-img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 p {
-    font-family: sans-serif;
-    font-size: 21px;
-    color: #473a40;
-    font-style: italic;
+	font-family: sans-serif;
+	font-size: 21px;
+	color: #473a40;
+	font-style: italic;
+	line-height: 28px;
 }
 
 button {
-    font-family: sans-serif;
-    font-size: larger;
+	font-family: sans-serif;
+	font-size: larger;
 }
 
 a {
-    font-family: sans-serif;
-    font-size: larger;
+	font-family: sans-serif;
+	font-size: larger;
 }
 
 h6 {
-    font-family: sans-serif;
-    font-size: larger;
+	font-family: sans-serif;
+	font-size: larger;
 }
 
-label, input {
-    font-family: sans-serif;
-    font-size: large;
+label,
+input {
+	font-family: sans-serif;
+	font-size: large;
+}
+
+
+.btn-google {
+	background: #dd4b39;
+	color: #fff;
+	width: 100%;
 }

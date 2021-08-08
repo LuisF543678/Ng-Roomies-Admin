@@ -8,7 +8,6 @@ import { GestionreportesComponent } from './gestion-reportes/gestionreportes.com
 import { ListaarrendadosComponent } from './lista-arrendados/listaarrendados.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserdetailsComponent } from './user-details/userdetails.component';
-import { AlojamientosComponent } from './alojamientos/alojamientos.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,19 +20,36 @@ import { PickPhotoDialogComponent } from './components/pick-photo-dialog/pick-ph
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { UpdateContactDialogComponent } from './components/update-contact-dialog/update-contact-dialog.component';
 import { DeleteContactDialogComponent } from './components/delete-contact-dialog/delete-contact-dialog.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { SharedModule } from '../shared/shared/shared.module';
 
 @NgModule({
-  declarations: [EstadisticasComponent, PeticionesarrendamientoComponent, GestionarrendadosComponent, GestionreportesComponent, ListaarrendadosComponent, ProfileComponent, UserdetailsComponent, AlojamientosComponent, MenuComponent, UpdateprofileComponent, PickPhotoDialogComponent, AddContactComponent, UpdateContactDialogComponent, DeleteContactDialogComponent],
+  declarations: [
+    EstadisticasComponent,
+    PeticionesarrendamientoComponent,
+    GestionarrendadosComponent,
+    GestionreportesComponent,
+    ListaarrendadosComponent,
+    ProfileComponent,
+    UserdetailsComponent,
+    MenuComponent,
+    UpdateprofileComponent,
+    PickPhotoDialogComponent,
+    AddContactComponent,
+    UpdateContactDialogComponent,
+    DeleteContactDialogComponent,
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+
+    //firebase
+    
+    SharedModule,
   ],
 })
 export class AdminModule { }

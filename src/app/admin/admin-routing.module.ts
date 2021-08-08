@@ -16,16 +16,16 @@ const routes: Routes = [
     path: 'menu', component: MenuComponent
   },
   {
-    path: 'estadisticas', component: EstadisticasComponent // no
+    path: 'estadisticas', component: EstadisticasComponent
   },
   {
-    path: 'gestion-arrendados', component: GestionarrendadosComponent // si
+    path: 'gestion-arrendados', component: GestionarrendadosComponent
   },
   {
-    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent // si
+    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent
   },
   {
-    path: 'lista-arrendados', component: ListaarrendadosComponent // si
+    path: 'lista-arrendados', component: ListaarrendadosComponent
   },
   {
     path: 'gestion-reportes', component: GestionreportesComponent
@@ -38,7 +38,8 @@ const routes: Routes = [
 
   },
   {
-    path: 'alojamientos', component: AlojamientosComponent
+    path: 'alojamientos',
+    loadChildren: () => import('./alojamientos/alojamientos.module').then(m => m.AlojamientosModule),
   }
 ]
 @NgModule({

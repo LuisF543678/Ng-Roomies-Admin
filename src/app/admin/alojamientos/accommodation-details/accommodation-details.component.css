@@ -1,0 +1,35 @@
+.accommodation__img-container {
+  height: 40vh;
+  overflow: hidden;
+}
+
+.accommodation__img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.accommodation__gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.95));
+  position: absolute;
+  z-index: 1;
+}
+
+.accommodation__title {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 2.5vmax;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.accommodation__photo-button {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  background-color: transparent;
+  bottom: 1rem;
+  right: 1rem;
+}

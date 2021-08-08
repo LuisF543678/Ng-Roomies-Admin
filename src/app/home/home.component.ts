@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,31 +14,34 @@ export class HomeComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  async onGoogleLogin() {
+    try {
+      this.auth.loginGoogle();
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   utf8_to_b64(str: string) {
     return window.btoa(unescape(encodeURIComponent(str)));
   }
-  
+
   onSubmit() {
-    this.user.auth(this.profileForm.value).subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        localStorage.setItem('user', this.utf8_to_b64(JSON.stringify(res.data)))
-        console.log(res.data);
-        this.router.navigate(['/admin/menu']);
-      } else {
-        console.log('Fallo en el inicio de sesión');
-      }
-    });
+    this.auth.signIn(this.profileForm.value.username, this.profileForm.value.password)
+    this.router.navigate(['/admin/menu']);
   }
+
+
 
   borrarS() {
     localStorage.removeItem('user');
-    //this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }

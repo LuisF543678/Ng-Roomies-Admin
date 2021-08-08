@@ -33,72 +33,90 @@
                         </div>
                         <br>
                         <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
-                    <button class="btn btn-danger return-menu" routerLink="/" (click)=" signOff()"><i
-                        class="fas fa-sign-out-alt"></i>Cerrar
-                      session</button>
+                        <button class="btn btn-danger return-menu" routerLink="/"><i
+                                class="fas fa-sign-out-alt"></i>Cerrar
+                            session</button>
 
                         <!--/.nav-collapse -->
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9" *ngIf="user">
-                <br>
+            <!-- <div class="col-sm-9" > 
+                <br> 
                 <div class="card mx-auto center">
                     <figure class="img-profile">
-                        <img *ngIf="user.ProfileImage;else imgDefault" class="img-thumbnail avatar"
-                            [src]="user.ProfileImage" alt="profile_img">
+                        <img class="img-thumbnail avatar"
+                             alt="profile_img">
                         <ng-template #imgDefault>
                             <img class="img-thumbnail avatar"
                                 src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg"
                                 alt="profile_img">
                         </ng-template>
                     </figure>
-                    <button mat-fab color="primary" class="add-photo" (click)="openPhotoDialog()">
+                    <button mat-fab color="primary" class="add-photo" >
                         <mat-icon>add_a_photo</mat-icon>
                     </button>
                     <div class="card-body">
                         <h3>Administrador</h3>
-                        <p class="card-text">{{user.name}} {{user.father_surname}} {{user.mother_surname}}</p>
+                        <p class="card-text">user</p>
                     </div>
                     <ng-container>
                         <div class="flex--center">
                             <h3>Medios de contacto</h3>
-                            <button mat-button color="primary" (click)="displayOrHide(true)">
+                            <button mat-button color="primary"></button>
                                 Agregar contacto
                             </button>
                         </div>
-                        <ul class="list-group full" *ngIf="lessee && lessee.Contacts.length > 0">
-                            <li class="list-group-item flex" *ngFor="let contact of lessee.Contacts">
-                                <span>{{contact.Name}}: {{contact.Value}}</span>
+                        <ul class="list-group full">
+                            <li class="list-group-item flex">
+                                <span>contac name</span>
                                 <div>
-                                    <button mat-icon-button color="accent" (click)="openUpdateDialog(contact)">
+                                    <button mat-icon-button color="accent">
                                         <mat-icon>edit</mat-icon>
                                     </button>
-                                    <button mat-icon-button color="warn" (click)="openDeleteDialog(contact)">
+                                    <button mat-icon-button color="warn">
                                         <mat-icon>delete</mat-icon>
                                     </button>
                                 </div>
                             </li>
                         </ul>
-                        <app-add-contact *ngIf="add" (closeForm)="displayOrHide($event)" [id]="lessee.ID">
+                        <app-add-contact>
                         </app-add-contact>
                     </ng-container>
                     <div class="mx-auto">
                         <br>
                         <div class="btn-group">
                             <div>
-                                <button type="button" class="btn btn-primary btn-block" (click)="openDialog()">Modificar
+                                <button type="button" class="btn btn-primary btn-block" >Modificar
                                     perfíl</button>
                             </div>
                         </div>
                         <br><br>
                     </div>
-                </div>
+                </div> 
 
+             </div> 
+             
+ -->
+
+            <div class="container">
+                <div class="text-center">
+                    <h2>Actualizar foto de pefil</h2>
+                    <br><br><br>
+                   <div class="mr-5">
+                    <label for="file">File:</label>
+                    <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+                    <button (click)="uploadImage()">Upload Image</button>
+                   </div>
             </div>
-
-
-
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br><br><br><br>
+            <br><br>
         </div>
     </div>
+</div>
 </div>
