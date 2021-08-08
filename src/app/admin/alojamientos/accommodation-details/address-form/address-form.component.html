@@ -1,0 +1,64 @@
+<div class="row w-100">
+  <form [formGroup]="form" class="col-12">
+    <div class="container">
+      <fieldset>
+        <legend>Dirección del alojamiento</legend>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Calle</mat-label>
+            <input type="text" formControlName="street" matInput />
+            <ng-container *ngIf="form.get('street').errors && form.get('street').touched">
+              <mat-error *ngIf="form.get('street').hasError('required')">La calle no puede estar vacía</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Número exterios</mat-label>
+            <input type="text" formControlName="outdoorNumber" matInput />
+            <ng-container *ngIf="form.get('outdoorNumber').errors && form.get('outdoorNumber').touched">
+              <mat-error *ngIf="form.get('outdoorNumber').hasError('required')">El número exterior no puede estar vacío</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Colonia</mat-label>
+            <input type="text" formControlName="district" matInput />
+            <ng-container *ngIf="form.get('district').errors && form.get('district').touched">
+              <mat-error *ngIf="form.get('district').hasError('required')">El nombre de la colonia no debe estar vacío.</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Código postal</mat-label>
+            <input type="text" formControlName="zipCode" matInput />
+            <ng-container *ngIf="form.get('zipCode').errors && form.get('zipCode').touched">
+              <mat-error *ngIf="form.get('zipCode').hasError('required')">El código postal no puede estar vacía.</mat-error>
+              <mat-error *ngIf="form.get('zipCode').hasError('minLength') || form.get('zipCode').hasError('maxLength')">El código postal debe tener 5 dígitos.</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Ciudad</mat-label>
+            <input type="text" formControlName="city" matInput />
+            <ng-container *ngIf="form.get('city').errors && form.get('street').touched">
+              <mat-error *ngIf="form.get('city').hasError('required')">La ciudad no puede estar vacía</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="w-100">
+            <mat-label>Estado</mat-label>
+            <input type="text" formControlName="state" matInput />
+            <ng-container *ngIf="form.get('state').errors && form.get('state').touched">
+              <mat-error *ngIf="form.get('state').hasError('required')">El estado no puede estar vacío</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </p>
+      </fieldset>
+    </div>
+  </form>
+</div>

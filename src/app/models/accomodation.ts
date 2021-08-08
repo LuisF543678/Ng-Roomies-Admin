@@ -8,7 +8,7 @@ export function createEmptyAccommodation(): Accommodation {
     location: {
       city: '',
       district: '',
-      outDoorNumber: 0,
+      outdoorNumber: 0,
       state: '',
       street: '',
       zipCode: 0
@@ -54,9 +54,9 @@ export interface Accommodation {
 }
 
 export interface Address {
-  city: string;
   street: string;
-  outDoorNumber: number;
+  outdoorNumber: number;
+  city: string;
   district: string;
   state: string;
   zipCode: number;

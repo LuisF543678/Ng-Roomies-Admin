@@ -28,13 +28,23 @@ export class AccommodationService {
     return await ref.getDownloadURL();
   }
 
-  public getAccommodationsByManager({username}: User): Observable<Accommodation[]> {
+  public getAccommodationById(id: number): Observable<Accommodation> {
+    return this.database.list<Accommodation>('alojamientos', ref => ref.orderByChild('id').equalTo(id))
+      .snapshotChanges().pipe(
+        map(
+          (data: SnapshotAction<Accommodation>[]) => {
+            return data[0].payload.val();
+          }
+        ));
+  }
+
+  public getAccommodationsByManager({ username }: User): Observable<Accommodation[]> {
     return this.database.list<Accommodation>('alojamientos').snapshotChanges().pipe(
       map(
         data => {
-          const newData = data.filter(action => { 
+          const newData = data.filter(action => {
             const accommodation: Accommodation = action.payload.val();
-            
+
             if (accommodation.manager) {
               return (accommodation.manager.username == username);
             }
