@@ -47,6 +47,7 @@ export interface Accommodation {
   manager: User;
   rooms: number;
   schedule: Schedule;
+  key?: any;
   firstPhoto?: string;
   users?: User[];
   photo?: AccommodationImage[];
@@ -56,10 +57,10 @@ export interface Accommodation {
 export interface Address {
   street: string;
   outdoorNumber: number;
-  city: string;
   district: string;
-  state: string;
   zipCode: number;
+  city: string;
+  state: string;
 }
 
 export interface Coordinates {
