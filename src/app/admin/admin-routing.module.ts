@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'gestion-arrendados', component: GestionarrendadosComponent
   },
   {
-    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent
+    path: 'peticiones-arrendamientos/:id', component: PeticionesarrendamientoComponent
   },
   {
     path: 'lista-arrendados', component: ListaarrendadosComponent

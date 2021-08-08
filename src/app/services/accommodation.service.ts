@@ -35,6 +35,7 @@ export class AccommodationService {
           (data: SnapshotAction<Accommodation>[]) => {
             const accommodation = data[0].payload.val();
             accommodation.key = data[0].key;
+            console.log(accommodation)
             return accommodation;
           }
         ));
