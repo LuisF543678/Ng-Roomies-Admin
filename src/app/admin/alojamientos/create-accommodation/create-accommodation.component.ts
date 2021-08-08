@@ -19,6 +19,7 @@ export class CreateAccommodationComponent implements OnInit {
   addressForm: FormGroup;
   photoForm: FormGroup;
   photoPreview: string | ArrayBuffer;
+  file: any;
 
   accommodation: Accommodation = createEmptyAccommodation();
   coordinates: Coordinates = {
@@ -83,16 +84,16 @@ export class CreateAccommodationComponent implements OnInit {
   }
 
   onChange(event): void {
-    const file = event.target.files[0];
+    this.file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.file);
     reader.onload = () => {
       this.photoPreview = reader.result;
     }
   }
 
   async uploadPhoto(): Promise<void> {
-    const url = await this.accommodationService.addFirstPhoto(this.photoForm.get('firstPhoto').value);
+    const url = await this.accommodationService.addFirstPhoto(this.file);
     this.accommodation.firstPhoto = url
   }
 
