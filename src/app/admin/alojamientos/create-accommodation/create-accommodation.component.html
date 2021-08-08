@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row pt-5">
-    <h2>Ingresa los datos que se te piden</h2>
+    <a [routerLink]="['/admin','alojamientos']" class="d-flex align-items-center">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      Regresar
+    </a>
     <div class="col-12">
+      <h2>Ingresa los datos que se te piden</h2>
       <mat-horizontal-stepper linear #stepper>
         <mat-step editable [stepControl]="form" class="d-flex justify-content-center">
           <ng-template matStepLabel>Datos generales</ng-template>
@@ -137,7 +141,7 @@
         <mat-step editable [stepControl]="photoForm">
           <ng-template matStepLabel>Foto del alojamiento</ng-template>
           <form [formGroup]="photoForm">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="w-100">
               <mat-label>Agrega una foto</mat-label>
               <input type="file" matInput formControlName="firstPhoto" accept=".png, .jpeg, .jpg, .wmp" (change)="onChange($event)" />
               <ng-container *ngIf="photoForm.get('firstPhoto').errors && photoForm.get('firstPhoto').touched">
@@ -147,7 +151,7 @@
             <button mat-button matStepperPrevious>Atrás</button>
             <button mat-raised-button color="primary" (click)="createAccommodation()">Crear alojamiento</button>
           </form>
-          <figure *ngIf="photoPreview">
+          <figure *ngIf="photoPreview" class="w-100 create__preview">
             <img [src]="photoPreview" alt="preview_photo" />
           </figure>
         </mat-step>

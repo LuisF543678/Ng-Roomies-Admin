@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Espera</h1>
+<section mat-dialog-content>
+  <div class="container">
+    <h2>¿En verdad quieres dar de baja este alojamiento?</h2>
+    <p>Luego de darlo de baja, no volverá a estar disponible en la aplicación.</p>
+  </div>
+</section>
+<section mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+  <button mat-button color="warn" (click)="delete()">Eliminar</button>
+</section>

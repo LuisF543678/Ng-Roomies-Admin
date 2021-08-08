@@ -53,7 +53,13 @@ export class AccommodationService {
 
             return false;
           });
-          return newData.map(action => action.payload.val());
+
+          return newData.map(action => {
+            const accommodation = action.payload.val();
+            accommodation.key = action.key;
+            console.log(accommodation);
+            return accommodation;
+          });
         }
       )
     );
@@ -61,5 +67,9 @@ export class AccommodationService {
 
   public async updateAccommodation(accommodation: Accommodation): Promise<void> {
     await this.database.database.ref(`alojamientos/${accommodation.key}`).update(accommodation);
+  }
+
+  public async deleteAccommodation(key: string): Promise<void> {
+    await this.database.database.ref(`alojamientos/${key}`).remove();
   }
 }
