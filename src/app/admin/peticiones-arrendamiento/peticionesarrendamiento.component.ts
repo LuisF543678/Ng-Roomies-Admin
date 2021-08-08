@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PeticionesService } from '../services/peticiones.service';
+
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-peticionesarrendamiento',
@@ -17,20 +20,31 @@ export class PeticionesarrendamientoComponent implements OnInit {
   messageform: FormGroup;
   error: boolean;
 
+  requestList: Request[];
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private peticiones: PeticionesService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.loader = true;
     }, 1000);
-    
 
-    this.messageform = this.fb.group({
-      'reason': new FormControl('', [Validators.required]),
-    });
+    /* 
+        this.messageform = this.fb.group({
+          'reason': new FormControl('', [Validators.required]),
+        });
+     */
 
-
+    this.peticiones.getRequest()
+      .snapshotChanges()
+      .subscribe(item => {
+      this.requestList =[];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.requestList.push(x as Request);
+      })
+      })
   }
 
 
@@ -44,7 +58,5 @@ export class PeticionesarrendamientoComponent implements OnInit {
   }
 
 
-  sendMessage() {
-  }
 
 }

@@ -51,6 +51,11 @@
                 contraseña?</a>
             </div>
             <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary w-100">Iniciar sesión</button>
+
+            <button (click)="onGoogleLogin()" class="btn btn-warnig btn-google mt-2">
+                Google
+            </button>
+
           </form>
           <!-- <button (click)="borrarS()">Borrar local storage</button>
              <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>

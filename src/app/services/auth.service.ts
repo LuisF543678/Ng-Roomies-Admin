@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { Observable, Subscription } from 'rxjs';
 import { Extractor } from '../models/vo/extractor';
 import { UserSignUp } from '../models/vo/usersignup';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -116,4 +117,16 @@ export class AuthService {
   public signOut(): void {
     this.auth.signOut();
   }
+
+  async loginGoogle() {
+    try {
+      return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider)
+    }
+    catch (error) {
+      console.log(error)
+    }
+    return null;
+  }
 }
+
+
