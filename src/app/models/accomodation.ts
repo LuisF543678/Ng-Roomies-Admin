@@ -47,6 +47,7 @@ export interface Accommodation {
   manager: User;
   rooms: number;
   schedule: Schedule;
+  key?: any;
   firstPhoto?: string;
   users?: User[];
   photo?: AccommodationImage[];
