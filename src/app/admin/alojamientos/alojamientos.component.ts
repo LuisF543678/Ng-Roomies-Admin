@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SnapshotAction } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Accommodation } from 'src/app/models/accomodation';
@@ -59,5 +58,9 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
         },
         console.error
       );      
+  }
+
+  navigateToDetails(accommodation: Accommodation): void {
+    this.router.navigate(['/admin', 'alojamientos', String(accommodation.id)]);
   }
 }

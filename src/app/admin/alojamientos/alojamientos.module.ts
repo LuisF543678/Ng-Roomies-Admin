@@ -6,12 +6,18 @@ import { AlojamientosComponent } from './alojamientos.component';
 import { CreateAccommodationComponent } from './create-accommodation/create-accommodation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
+import { GeneralFormComponent } from './accommodation-details/general-form/general-form.component';
+import { AddressFormComponent } from './accommodation-details/address-form/address-form.component';
 
 
 @NgModule({
   declarations: [
     AlojamientosComponent,
     CreateAccommodationComponent,
+    AccommodationDetailsComponent,
+    GeneralFormComponent,
+    AddressFormComponent,
   ],
   imports: [
     CommonModule,
