@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Accommodation } from 'src/app/models/accomodation';
 import { Usuario } from 'src/app/models/users';
 
 @Injectable({
@@ -7,16 +8,17 @@ import { Usuario } from 'src/app/models/users';
 })
 export class PeticionesService {
 
-  requestList: AngularFireList<any>
+  alojamientosList: AngularFireList<any>;
 
-  constructor(private firebaseData: AngularFireDatabase) { }
 
-getRequest() {
-  return this.requestList = this.firebaseData.list('/alojamientos/-MgWJD9_OL7IBbWdXJiy');
-}
+  constructor(private firebaseData: AngularFireDatabase) {
 
-deleteRequest($key: string) {
-  this.requestList.remove($key);
-}
+  }
+
+
+  getAlojamientos(){
+    return this.alojamientosList = this.firebaseData.list('/alojamientos');
+  }
+
 
 }

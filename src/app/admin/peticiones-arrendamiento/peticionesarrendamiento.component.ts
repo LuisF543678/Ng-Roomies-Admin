@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PeticionesService } from '../services/peticiones.service';
 
 import { User } from 'src/app/models/user';
+import { map } from 'rxjs/operators';
+import { Accommodation } from 'src/app/models/accomodation';
 
 @Component({
   selector: 'app-peticionesarrendamiento',
@@ -20,9 +22,11 @@ export class PeticionesarrendamientoComponent implements OnInit {
   messageform: FormGroup;
   error: boolean;
 
-  requestList: Request[];
+  alojamientoList: Accommodation[];
 
-  constructor(private router: Router, private fb: FormBuilder, private peticiones: PeticionesService) { }
+  constructor(private router: Router, private fb: FormBuilder, private peticiones: PeticionesService) {
+    
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -34,25 +38,20 @@ export class PeticionesarrendamientoComponent implements OnInit {
           'reason': new FormControl('', [Validators.required]),
         });
      */
-
-    this.peticiones.getRequest()
-      .snapshotChanges()
-      .subscribe(item => {
-      this.requestList =[];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.requestList.push(x as Request);
-      })
-      })
+    this.mostrarAlojamientos();
   }
 
-
-
-  getRequest(accommodation_id: any): void {
-
-  }
-
+mostrarAlojamientos() {
+  this.peticiones.getAlojamientos().snapshotChanges().subscribe(item => {
+    this.alojamientoList=[];
+    item.forEach(element =>{
+      let x = element.payload.toJSON();
+      x["$keyRegistro"] = element.key;
+      this.alojamientoList.push(x as Accommodation);
+    });
+  }); 
+}
+  
   signOff() {
     localStorage.removeItem('user');
   }

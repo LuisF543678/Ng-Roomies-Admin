@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -17,9 +18,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userSubscription: Subscription = new Subscription();
   add: boolean = false;
   public loader: Boolean = false;
-
-  constructor(
-    private dialog: MatDialog,
+  filePath: String
+  constructor(private dialog: MatDialog, private afStorage: AngularFireStorage
   ) { }
   
   ngOnDestroy(): void {
@@ -32,5 +32,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
+  upload(event) {
+    this.filePath = event.target.files[0]
+  }
+
+  uploadImage() { 
+    console.log("detalles", this.filePath)
+    this.afStorage.upload('/photoProfile/' + Math.random() + this.filePath, this.filePath);
+  }
  
+  
+
 }
