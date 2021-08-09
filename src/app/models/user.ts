@@ -8,8 +8,9 @@ export interface User {
     birthDate: string;
     gender: string;
     admin: boolean;
+    photo?: string;
     id?: string;
-    profileImage?: string;
+    key?: string;
     accommodations?: Accommodation[];
     contacts?: Contact[]; 
 }
