@@ -58,7 +58,7 @@
                     </button>
                     <div class="card-body">
                         <h3>Administrador</h3>
-                        <p class="card-text">{{ user.firstName }} {{ user.fatherSurname }} {{ user.motherSurname }}</p>
+                        <app-profile-form [user]="user"></app-profile-form>
                     </div>
                     <ng-container>
                         <div class="flex--center">
@@ -84,11 +84,6 @@
                     </ng-container>
                     <div class="mx-auto">
                         <br>
-                        <div class="btn-group">
-                            <div>
-                                <button type="button" class="btn btn-primary btn-block" >Modificar perfíl</button>
-                            </div>
-                        </div>
                         <br><br>
                     </div>
                 </div>
