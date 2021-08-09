@@ -23,6 +23,7 @@ import { DeleteContactDialogComponent } from './components/delete-contact-dialog
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared/shared.module';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProfileFormComponent } from './components/profile-form/profile-form.com
     UpdateContactDialogComponent,
     DeleteContactDialogComponent,
     ProfileFormComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,
