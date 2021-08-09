@@ -22,7 +22,7 @@ import { UpdateContactDialogComponent } from './components/update-contact-dialog
 import { DeleteContactDialogComponent } from './components/delete-contact-dialog/delete-contact-dialog.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared/shared.module';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     EstadisticasComponent,
@@ -51,5 +51,6 @@ import { SharedModule } from '../shared/shared/shared.module';
     
     SharedModule,
   ],
+  providers : [DatePipe]
 })
 export class AdminModule { }

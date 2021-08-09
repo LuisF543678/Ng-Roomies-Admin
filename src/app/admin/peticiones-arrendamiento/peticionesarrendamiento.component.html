@@ -33,7 +33,7 @@
                 </ul>
               </div>
               <br>
-              <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
+              <button class="btn btn-success return-menu" [routerLink]="['/admin','alojamientos']">Volver</button>
               <!-- <button class="btn btn-danger return-menu" routerLink="/" (click)="signOut()"><i
                   class="fas fa-sign-out-alt"></i>Cerrar
                 session</button> -->
@@ -51,9 +51,9 @@
             <table class="table table-bordered" *ngIf="requests && requests.length > 0; else empty">
               <thead>
                 <tr class="text-center">
-                  <th scope="col">N°</th>
-                  <th scope="col">Nombre del alojamiento</th>
-                  <th scope="col">Precio</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Nombre de usuario</th>
+                  <th scope="col">Fecha de solicitud</th>
                   <th scope="col">Accion</th>
                 </tr>
               </thead>
@@ -61,17 +61,30 @@
                 <tr *ngFor="let r of requests">
                   <th scope="row">{{ r.name }}</th>
                   <td>{{ r.username }}</td>
-                  <td>{{ r.username }}</td>
+                  <td>{{ r.date }}</td>
                   <td class="text-center">
-                    <!-- <button type="button" class="btn btn-primary" (click)="navigateToDetails(accommodation)"><i class="fas fa-eye"></i></button> -->
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-primary" (click)="navigateToUser(r.uid)"><i class="fas fa-eye"></i></button>
+                    <div *ngIf="r.status === false">
+                      <button type="button" disabled class=" btn btn-danger">Rechazado</button>
+                    </div>
+                    <div *ngIf="r.status === true">
+                      <button type="button" disabled class=" btn btn-primary">Aceptado</button>
+                    </div>
+                    <div class="" *ngIf="r.status === ''">
+                        <a href="" class="float-right btn btn-danger btn-block" data-toggle="modal"
+                            data-target="#exampleModal" data-whatever="@getbootstrap" (click)="rechazar(r,r.id)">Rechazar</a>
+                        <br>
+                        <button type="submit" class="btn btn-success btn-block" (click)="aceptar(r,r.id)"> Aceptar </button>
+                    </div>
+                    
+                    <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> -->
                     <!-- <button type="button" class="btn btn-danger" (click)="navigateToPeticiones(accommodation)">Ver Peticiones </button> -->
                   </td>
                 </tr>
               </tbody>
             </table>
             <ng-template #empty>
-              <p>No tienes alojamientos. Te recomendamos dar de alta uno.</p>
+              <p>No tienes peticiones para este alojamiento</p>
             </ng-template>
           </div>
         </div>
