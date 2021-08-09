@@ -41,12 +41,12 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-9" *ngIf="user"> -->
-                <!-- <br> -->
-                <!-- <div class="card mx-auto center">
+            <div class="col-sm-9" *ngIf="user">
+                <br>
+                <div class="card mx-auto center">
                     <figure class="img-profile">
-                        <img *ngIf="user.ProfileImage;else imgDefault" class="img-thumbnail avatar"
-                            [src]="user.ProfileImage" alt="profile_img">
+                        <img *ngIf="user.photo;else imgDefault" class="img-thumbnail avatar"
+                            [src]="user.photo" alt="profile_img">
                         <ng-template #imgDefault>
                             <img class="img-thumbnail avatar"
                                 src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg"
@@ -58,7 +58,7 @@
                     </button>
                     <div class="card-body">
                         <h3>Administrador</h3>
-                        <p class="card-text">{{user.name}} {{user.father_surname}} {{user.mother_surname}}</p>
+                        <p class="card-text">{{ user.firstName }} {{ user.fatherSurname }} {{ user.motherSurname }}</p>
                     </div>
                     <ng-container>
                         <div class="flex--center">
@@ -67,7 +67,7 @@
                                 Agregar contacto
                             </button>
                         </div>
-                        <ul class="list-group full" *ngIf="lessee && lessee.Contacts.length > 0">
+                        <!-- <ul class="list-group full" *ngIf="lessee && lessee.Contacts.length > 0">
                             <li class="list-group-item flex" *ngFor="let contact of lessee.Contacts">
                                 <span>{{contact.Name}}: {{contact.Value}}</span>
                                 <div>
@@ -79,23 +79,21 @@
                                     </button>
                                 </div>
                             </li>
-                        </ul>
-                        <app-add-contact *ngIf="add">
-                        </app-add-contact>
+                        </ul> -->
+                        <app-add-contact *ngIf="add"></app-add-contact>
                     </ng-container>
                     <div class="mx-auto">
                         <br>
                         <div class="btn-group">
                             <div>
-                                <button type="button" class="btn btn-primary btn-block" >Modificar
-                                    perfíl</button>
+                                <button type="button" class="btn btn-primary btn-block" >Modificar perfíl</button>
                             </div>
                         </div>
                         <br><br>
                     </div>
-                </div> -->
+                </div>
 
-            <!-- </div> -->
+            </div>
 
         </div>
     </div>
