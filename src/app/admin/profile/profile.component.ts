@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.loader = true;
     }, 1000);
   }
-
+  
   ngOnDestroy(): void {
     if (this.dialogSubscription) {
       this.dialogSubscription.unsubscribe();
@@ -53,10 +53,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe(
       (data: string) => {
-        this.user.photo = data;
-        localStorage.setItem('user', JSON.stringify(this.user));
-        this.authService.updateUser(this.user);
+        console.log(data);
+        if (data) {
+          this.user.photo = data;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          this.authService.updateUser(this.user);
+        }
       }
     );
+
   }
 }

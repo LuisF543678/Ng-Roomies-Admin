@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { Observable, Subscription } from 'rxjs';
 import { Extractor } from '../models/vo/extractor';
 import { UserSignUp } from '../models/vo/usersignup';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private auth: AngularFireAuth,
-    private database: AngularFireDatabase
+    private database: AngularFireDatabase,
+    private storage: AngularFireStorage,
   ) {
     this.extractor = new Extractor();
   }
@@ -53,6 +55,7 @@ export class AuthService {
       },
       console.error
     );
+    subscriber.unsubscribe();
   }
 
   /**
@@ -108,5 +111,11 @@ export class AuthService {
 
   public async updateUser(userData: User): Promise<void> {
     await this.database.database.ref(`users/${userData.key}`).update(userData);
+  }
+
+  public async uploadProfilePhoto(file: File, key: any): Promise<string> {
+    const name = `user-${key}-${Date.now()}`;
+    const fileRef = await this.storage.ref(`users/${name}`).put(file);
+    return await fileRef.ref.getDownloadURL();
   }
 }
