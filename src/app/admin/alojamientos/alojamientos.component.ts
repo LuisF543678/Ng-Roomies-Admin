@@ -62,6 +62,7 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
       .subscribe(
         (data: Accommodation[]) => {
           this.accommodations = data;
+          console.log(this.accommodations);
         },
         console.error
       );      
@@ -69,6 +70,14 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
 
   navigateToDetails(accommodation: Accommodation): void {
     this.router.navigate(['/admin', 'alojamientos', String(accommodation.id)]);
+  }
+  
+  navigateToPeticiones(accommodation: Accommodation): void {
+    this.router.navigate(['/admin', 'peticiones-arrendamientos', String(accommodation.id)]);
+  }
+  
+  navigateToReports(accommodation: Accommodation): void {
+    this.router.navigate(['/admin', 'gestion-reportes', String(accommodation.id)]);
   }
 
   displayDialog(key: string): void {
