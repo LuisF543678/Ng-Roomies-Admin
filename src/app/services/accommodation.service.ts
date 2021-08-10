@@ -21,7 +21,7 @@ export class AccommodationService {
     this.database.list<Accommodation>('alojamientos').push(accommodation);
   }
 
-  public async addFirstPhoto(file: any): Promise<string> {
+  public async addFirstPhoto(file: File): Promise<string> {
     const id = Date.now();
     const response = this.storage.ref(`photos/${id}`).put(file);
     const ref = (await response).ref
@@ -104,6 +104,7 @@ export class AccommodationService {
   public async updateStatus(status, accommodation,id){
     console.log(accommodation);
     await this.database.database.ref(`alojamientos/${accommodation.key}/requests/${id}`).update(status);
+  }
 
   public async deleteAccommodation(key: string): Promise<void> {
     await this.database.database.ref(`alojamientos/${key}`).remove();

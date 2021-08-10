@@ -19,7 +19,7 @@ export class CreateAccommodationComponent implements OnInit {
   addressForm: FormGroup;
   photoForm: FormGroup;
   photoPreview: string | ArrayBuffer;
-  file: any;
+  file: File;
 
   accommodation: Accommodation = createEmptyAccommodation();
   coordinates: Coordinates = {
@@ -83,8 +83,8 @@ export class CreateAccommodationComponent implements OnInit {
     this.accommodation.location = data;
   }
 
-  onChange(event): void {
-    this.file = event.target.files[0];
+  onChange(event: Event): void {
+    this.file = (event.target as HTMLInputElement).files[0];
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
     reader.onload = () => {
