@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user';
 import { Contact } from 'src/app/models/vo/contact';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -9,14 +10,15 @@ import { Contact } from 'src/app/models/vo/contact';
   styleUrls: ['./add-contact.component.css']
 })
 export class AddContactComponent implements OnInit {
-  @Input() id: number = -1;
+  @Input() user: User;
   @Output() closeForm: EventEmitter<boolean>;
 
   builder: FormBuilder = new FormBuilder();
   group: FormGroup;
-  contactSubscription: Subscription = new Subscription();
 
-  constructor() {
+  constructor(
+    private authService: AuthService,
+  ) {
     this.group = this.builder.group({
       name: ['', [Validators.required]],
       contactValue: ['', [Validators.required]]
@@ -30,12 +32,25 @@ export class AddContactComponent implements OnInit {
 
   submitContact(): void {
     if (this.group.valid) {
-      const contact = new Contact(this.group.get('name')?.value, this.group.get('contactValue')?.value);
-      this.sendContact(this.id, contact);
+      const contact: Contact = {
+        name: this.group.get('name').value,
+        value: this.group.get('contactValue').value,
+      };
+
+      this.sendContact(contact);
     }
   }
 
-  sendContact(id: number, contact: Contact): void {
+  sendContact(contact: Contact): void {
+    if (!this.user.contacts) {
+      this.user.contacts = [];
+    }
+
+    this.user.contacts.push(contact);
+
+    localStorage.setItem('user', JSON.stringify(this.user));
+    this.authService.updateUser(this.user);
+    this.close();
   }
 
   close(): void {

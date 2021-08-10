@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatLineModule, MatOptionModule, MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatOptionModule,
     MatRippleModule,
     MatSelectModule,
+    MatRadioModule,
   ],
   exports: [
     MatButtonModule,
@@ -36,7 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatOptionModule,
     MatRippleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
   ]
 })
 export class SharedModule { }
