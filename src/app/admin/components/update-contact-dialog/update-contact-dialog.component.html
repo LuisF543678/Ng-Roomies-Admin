@@ -13,12 +13,13 @@
         <p>
             <mat-form-field appearance="outline">
                 <mat-label>Valor</mat-label>
-                <input type="text" matInput formControlName="value">
-                <ng-container *ngIf="group.get('value')?.errors && group.get('value')?.touched">
-                    <mat-error *ngIf="group.get('value')?.hasError('required')">El valor es requerido.</mat-error>
+                <input type="text" matInput formControlName="contactValue">
+                <ng-container *ngIf="group.get('contactValue')?.errors && group.get('contactValue')?.touched">
+                    <mat-error *ngIf="group.get('contactValue')?.hasError('required')">El valor es requerido.</mat-error>
                 </ng-container>
             </mat-form-field>
         </p>
-        <button mat-raised-button color="primary">Actualizar</button>
+        <button mat-raised-button color="primary" type="submit">Actualizar</button>
+        <button mat-button (click)="close()">Cancelar</button>
     </form>
 </mat-dialog-content>

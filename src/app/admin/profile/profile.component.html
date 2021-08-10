@@ -68,17 +68,7 @@
                             </button>
                         </div>
                         <ul class="list-group full" *ngIf="user.contacts && user.contacts.length > 0">
-                            <li class="list-group-item flex" *ngFor="let contact of user.contacts">
-                                <span>{{contact.name}}: {{contact.value}}</span>
-                                <div>
-                                    <button mat-icon-button color="accent">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="warn">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </div>
-                            </li>
+                            <app-contact *ngFor="let contact of user.contacts" [contact]="contact" [user]="user"></app-contact>
                         </ul>
                         <app-add-contact *ngIf="add" (closeForm)="displayOrHide($event)" [user]="user"></app-add-contact>
                     </ng-container>
