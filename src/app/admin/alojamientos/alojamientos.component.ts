@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Accommodation } from 'src/app/models/accomodation';
 import { User } from 'src/app/models/user';
 import { AccommodationService } from 'src/app/services/accommodation.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DeleteAccommodationDialogComponent } from './delete-accommodation-dialog/delete-accommodation-dialog.component';
 
 @Component({
   selector: 'app-alojamientos',
@@ -20,7 +22,8 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
     private router: Router,
     private accommodationService: AccommodationService,
     private authService: AuthService,
-    ) { }
+    private dialog: MatDialog,
+  ) { }
 
   public loader: Boolean = false;
 
@@ -73,5 +76,10 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
   }
   navigateToReports(accommodation: Accommodation): void {
     this.router.navigate(['/admin', 'gestion-reportes', String(accommodation.id)]);
+
+  displayDialog(key: string): void {
+    this.dialog.open(DeleteAccommodationDialogComponent, {
+      data: key
+    });
   }
 }

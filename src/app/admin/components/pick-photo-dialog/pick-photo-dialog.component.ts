@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UploadImage } from 'src/app/models/vo/upload-image';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-pick-photo-dialog',
@@ -11,14 +12,15 @@ import { UploadImage } from 'src/app/models/vo/upload-image';
 })
 export class PickPhotoDialogComponent implements OnInit, OnDestroy {
   reader: FileReader;
-  upload: UploadImage;
+  file: File;
+  fileBin: string | ArrayBuffer;
   imageSubscription: Subscription;
 
   constructor(
     public dialogRef: MatDialogRef<PickPhotoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: number,
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private authService: AuthService,
   ) {
-    this.upload = UploadImage.createVoid();
     this.reader = new FileReader();
     this.imageSubscription = new Subscription();
   }
@@ -36,23 +38,24 @@ export class PickPhotoDialogComponent implements OnInit, OnDestroy {
 
   pickFile(event: Event): void {
     const files = (event?.target as HTMLInputElement).files;
-    const file = files ? files[0] : null;
+    this.file = files ? files[0] : null;
 
-    if (file) {
-      if (!file.type.includes('image')) {
+    if (this.file) {
+      if (!this.file.type.includes('image')) {
         throw new Error('pick only images');
       }
 
-      const urlFile = this.reader.readAsDataURL(file);
+      this.reader.readAsDataURL(this.file);
       this.reader.onloadend = () => {
-        this.upload = new UploadImage(`profile-${this.data}-${Date.now()}`, this.reader.result);
+        this.fileBin = this.reader.result;
       }
     }
   }
 
-  uploadImage(): void {
-    if (this.upload.file) {
-      
+  async uploadImage(): Promise<void> {
+    if (this.file) {
+      const url = await this.authService.uploadProfilePhoto(this.file, this.data);
+      this.dialogRef.close(url);
     }
   }
 }

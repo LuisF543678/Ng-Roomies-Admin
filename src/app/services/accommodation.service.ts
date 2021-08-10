@@ -77,7 +77,13 @@ export class AccommodationService {
 
             return false;
           });
-          return newData.map(action => action.payload.val());
+
+          return newData.map(action => {
+            const accommodation = action.payload.val();
+            accommodation.key = action.key;
+            console.log(accommodation);
+            return accommodation;
+          });
         }
       )
     );
@@ -85,9 +91,11 @@ export class AccommodationService {
   public async updateAccommodation(accommodation: Accommodation): Promise<void> {
     await this.database.database.ref(`alojamientos/${accommodation.key}`).update(accommodation);
   }
+  
   public async sendMessageRejected(user,request){
     await this.database.database.ref(`users/${user.uid}/messages`).push(request);
   }
+  
   public async sendMessageAccepted(user,request,alojamiento){
     await this.database.database.ref(`users/${user.uid}/messages`).push(request);
     await this.database.database.ref(`users/${user.uid}/accommodation`).update(alojamiento);
@@ -96,5 +104,8 @@ export class AccommodationService {
   public async updateStatus(status, accommodation,id){
     console.log(accommodation);
     await this.database.database.ref(`alojamientos/${accommodation.key}/requests/${id}`).update(status);
+
+  public async deleteAccommodation(key: string): Promise<void> {
+    await this.database.database.ref(`alojamientos/${key}`).remove();
   }
 }

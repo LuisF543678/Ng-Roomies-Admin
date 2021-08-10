@@ -23,6 +23,9 @@ import { DeleteContactDialogComponent } from './components/delete-contact-dialog
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared/shared.module';
 import { DatePipe } from '@angular/common';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { ContactComponent } from './components/contact/contact.component';
+
 @NgModule({
   declarations: [
     EstadisticasComponent,
@@ -38,6 +41,8 @@ import { DatePipe } from '@angular/common';
     AddContactComponent,
     UpdateContactDialogComponent,
     DeleteContactDialogComponent,
+    ProfileFormComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,

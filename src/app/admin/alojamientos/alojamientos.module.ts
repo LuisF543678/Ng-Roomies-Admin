@@ -10,6 +10,7 @@ import { AccommodationDetailsComponent } from './accommodation-details/accommoda
 import { GeneralFormComponent } from './accommodation-details/general-form/general-form.component';
 import { AddressFormComponent } from './accommodation-details/address-form/address-form.component';
 import { PhotoDialogComponent } from './accommodation-details/photo-dialog/photo-dialog.component';
+import { DeleteAccommodationDialogComponent } from './delete-accommodation-dialog/delete-accommodation-dialog.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PhotoDialogComponent } from './accommodation-details/photo-dialog/photo
     GeneralFormComponent,
     AddressFormComponent,
     PhotoDialogComponent,
+    DeleteAccommodationDialogComponent,
   ],
   imports: [
     CommonModule,

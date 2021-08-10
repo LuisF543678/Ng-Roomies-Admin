@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="w-100" (ngSubmit)="updateProfileData()">
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Nombre</mat-label>
+    <input type="text" formControlName="firstName" matInput>
+    <ng-container *ngIf="form.get('firstName').errors && form.get('firstName').touched">
+      <mat-error *ngIf="form.get('firstName').hasError('required')">El nombre no puede estar vacío.</mat-error>
+    </ng-container>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Apellido paterno</mat-label>
+    <input type="text" formControlName="fatherSurname" matInput>
+    <ng-container *ngIf="form.get('fatherSurname').errors && form.get('fatherSurname').touched">
+      <mat-error *ngIf="form.get('fatherSurname').hasError('required')">El apellido paterno no puede estar vacío.</mat-error>
+    </ng-container>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Apellido materno</mat-label>
+    <input type="text" formControlName="motherSurname" matInput>
+    <ng-container *ngIf="form.get('motherSurname').errors && form.get('motherSurname').touched">
+      <mat-error *ngIf="form.get('motherSurname').hasError('required')">El apellido materno no puede estar vacío.</mat-error>
+    </ng-container>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Fecha de nacimiento</mat-label>
+    <input type="date" formControlName="birthDate" matInput>
+    <ng-container *ngIf="form.get('birthDate').errors && form.get('birthDate').touched">
+      <mat-error *ngIf="form.get('birthDate').hasError('required')">La fecha de nacimiento no puede estar vacía.</mat-error>
+    </ng-container>
+  </mat-form-field>
+  <mat-radio-group formControlName="gender" class="w-100">
+    <mat-radio-button value="male">Masculino</mat-radio-button>
+    <mat-radio-button value="female">Femenino</mat-radio-button>
+    <mat-radio-button value="other">Otro</mat-radio-button>
+  </mat-radio-group>
+  <br>
+  <button mat-button (click)="enableForm()" *ngIf="form.disabled">
+    <mat-icon>edit</mat-icon>
+    Editar
+  </button>
+  <button mat-raised-button color="primary" type="submit" *ngIf="form.enabled">
+    <mat-icon>save</mat-icon>
+    Guardar cambios
+  </button>
+  <button mat-button *ngIf="form.enabled" (click)="disableForm()">
+    <mat-icon>close</mat-icon>
+    Cancelar
+  </button>
+</form>

@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { Contact, User } from 'src/app/models/user';
 import * as UpdateContact from 'src/app/models/vo/contact';
 
 @Component({
@@ -16,25 +17,33 @@ export class UpdateContactDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<UpdateContactDialogComponent>,
-  ) {
-    
-  }
+    @Inject(MAT_DIALOG_DATA) private data: Contact,
+  ) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   ngOnDestroy(): void {
     this.updateSubscription.unsubscribe();
   }
 
-  sendContact(): void {
-    if (this.group.valid) {
-      const contact = new UpdateContact.Contact(this.group.get('name')?.value, this.group.get('value')?.value);
-    }
+  initForm(): void {
+    this.group = this.builder.group({
+      name: [this.data.name, [Validators.required]],
+      contactValue: [this.data.value, [Validators.required]],
+    });
   }
 
-  updateContact(id: number, contact: UpdateContact.Contact) {
-    
+  sendContact(): void {
+    if (this.group.valid) {
+      const contact: Contact = {
+        name: this.group.get('name').value,
+        value: this.group.get('contactValue').value,
+      }
+
+      this.dialogRef.close(contact);
+    }
   }
 
   close(): void {
