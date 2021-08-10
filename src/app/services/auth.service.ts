@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Extractor } from '../models/vo/extractor';
 import { UserSignUp } from '../models/vo/usersignup';
 import { AngularFireStorage } from '@angular/fire/storage';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
