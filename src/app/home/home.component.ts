@@ -19,14 +19,25 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  async onGoogleLogin() {
+    try {
+      this.auth.loginGoogle();
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
   utf8_to_b64(str: string) {
     return window.btoa(unescape(encodeURIComponent(str)));
   }
-  
+
   onSubmit() {
     this.auth.signIn(this.profileForm.value.username, this.profileForm.value.password)
     this.router.navigate(['/admin/menu']);
   }
+
+
 
   borrarS() {
     localStorage.removeItem('user');

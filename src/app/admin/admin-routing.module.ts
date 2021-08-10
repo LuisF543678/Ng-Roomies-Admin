@@ -22,19 +22,19 @@ const routes: Routes = [
     path: 'gestion-arrendados', component: GestionarrendadosComponent
   },
   {
-    path: 'peticiones-arrendamientos', component: PeticionesarrendamientoComponent
+    path: 'peticiones-arrendamientos/:id', component: PeticionesarrendamientoComponent
   },
   {
     path: 'lista-arrendados', component: ListaarrendadosComponent
   },
   {
-    path: 'gestion-reportes', component: GestionreportesComponent
+    path: 'gestion-reportes/:id', component: GestionreportesComponent
   },
   {
     path: 'profile', component: ProfileComponent
   },
   {
-    path: 'user-details', component: UserdetailsComponent
+    path: 'user-details/:id', component: UserdetailsComponent
 
   },
   {

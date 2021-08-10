@@ -2,103 +2,72 @@
     <div class="d-flex flex-row justify-content-center">
         <img class="spinneradmin" src="https://herpasa.com/img/throbber.gif" alt="">
     </div>
-</div>
-
-<div class="container">
-    <br>
-    <br>
-    <div *ngIf="loader" class="row">
+  </div> 
+  
+  <div class="container">
+    <div>
+      <br>
+          <br>
+      <div *ngIf="loader" class="row">
         <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button class="navbar-toggler-icon" type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <img class="imgbtn" src="https://image.flaticon.com/icons/png/512/40/40105.png" alt="">
-                        </button>
-                        <span class="visible-xs navbar-brand">Admin</span>
-                    </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a routerLink="../estadisticas">Ver Estadísticas</a></li>
-                            <li><a routerLink="../peticiones-arrendamientos">Peticiones de arrendamiento</a></li>
-                            <li><a routerLink="../gestion-arrendados">Gestión de arrendados</a></li>
-                            <li><a routerLink="../gestion-reportes">Gestión de reportes</a></li>
-                            <li><a routerLink="../lista-arrendados">Listado de arrendados</a></li>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
-                    <br>
-
-                    <button class="btn btn-success return-menu" routerLink="../menu">Volver al menu</button>
-                    <button class="btn btn-danger return-menu" routerLink="/" (click)=" signOff()"><i
-                            class="fas fa-sign-out-alt"></i>Cerrar
-                        session</button>
-                </div>
+          <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+              <div class="navbar-header">
+                <button class="navbar-toggler-icon" type="button" class="navbar-toggle" data-toggle="collapse"
+                  data-target=".sidebar-navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <img class="imgbtn" src="https://image.flaticon.com/icons/png/512/40/40105.png" alt="">
+                </button>
+                <span class="visible-xs navbar-brand">Admin</span>
+              </div> 
+              <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a routerLink="../estadisticas">Ver Estadísticas</a></li>
+                  <li><a routerLink="../peticiones-arrendamientos">Peticiones de arrendamiento</a></li>
+                  <li><a routerLink="../gestion-arrendados">Gestión de arrendados</a></li>
+                  <li><a routerLink="../gestion-reportes">Gestión de reportes</a></li>
+                  <li><a routerLink="../lista-arrendados">Listado de arrendados</a></li>
+                  <li><a routerLink="../profile">Ver perfil</a></li>
+                  <li><a routerLink="../alojamientos">Mis alojamientos</a></li>
+                </ul>
+              </div>
+              <br>
+              <button class="btn btn-success return-menu" [routerLink]="['/admin','alojamientos']">Volver</button>
+              <!-- <button class="btn btn-danger return-menu" routerLink="/" (click)="signOut()"><i
+                  class="fas fa-sign-out-alt"></i>Cerrar
+                session</button> -->
+              <!--/.nav-collapse peticiones por alojamiento-->
             </div>
+          </div>
         </div>
         <div class="col-sm-9">
-            <br>
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Reporte N...
-                            <div class="text-white-50 small">text....</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <br>
+          <div class="row d-flex justify-content-between mb-2">
+            <h2 class="fs-2 text-start">Alojamientos que administras.</h2>
+            <!-- <button class="btn btn-success" (click)="navigateToCreate()">Agregar alojamiento</button> -->
+          </div>
+          <div class="col-12">
+            <table class="table table-bordered" *ngIf="reports && reports.length > 0; else empty">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col">Nombre de usuario</th>
+                  <th scope="col">Reporte solicitado</th>
+                  <th scope="col">Fecha del reporte</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let r of reports">
+                  <th scope="row">{{ r.username }}</th>
+                  <td>{{ r.report }}</td>
+                  <td>{{ r.date }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <ng-template #empty>
+              <p>Felicidades no tienes ningun reporte</p>
+            </ng-template>
+          </div>
         </div>
+      </div>
     </div>
-</div>

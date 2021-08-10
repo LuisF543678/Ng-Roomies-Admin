@@ -1,14 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-contact-dialog',
   templateUrl: './delete-contact-dialog.component.html',
   styleUrls: ['./delete-contact-dialog.component.css']
 })
-export class DeleteContactDialogComponent implements OnInit, OnDestroy {
-  responseSubscription: Subscription = new Subscription();
+export class DeleteContactDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<DeleteContactDialogComponent>,
@@ -17,14 +15,11 @@ export class DeleteContactDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
-    this.responseSubscription.unsubscribe();
-  }
-
   deleteContact(): void {
+    this.dialogRef.close(true);
   }
 
   close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

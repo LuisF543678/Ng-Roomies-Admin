@@ -22,6 +22,9 @@ import { UpdateContactDialogComponent } from './components/update-contact-dialog
 import { DeleteContactDialogComponent } from './components/delete-contact-dialog/delete-contact-dialog.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SharedModule } from '../shared/shared/shared.module';
+import { DatePipe } from '@angular/common';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +41,21 @@ import { SharedModule } from '../shared/shared/shared.module';
     AddContactComponent,
     UpdateContactDialogComponent,
     DeleteContactDialogComponent,
+    ProfileFormComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
+    MatIconModule,
+
+    //firebase
+    
     SharedModule,
   ],
+  providers : [DatePipe]
 })
 export class AdminModule { }
