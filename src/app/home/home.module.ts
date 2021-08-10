@@ -13,4 +13,6 @@ import { AuthService } from '../services/auth.service';
     ReactiveFormsModule
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+  
+ }

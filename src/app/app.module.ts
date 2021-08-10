@@ -18,6 +18,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SharedModule } from './shared/shared/shared.module';
+import {AngularFireStorageModule} from '@angular/fire/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlaea9L46r--_5ivWSn--ShFfQkrbu9cc",
@@ -48,7 +49,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    SharedModule
+    SharedModule,
+    AngularFireStorageModule
   ],
   providers: [
     {

@@ -96,6 +96,16 @@ export class AuthService {
     this.auth.signOut();
   }
 
+  async loginGoogle() {
+    try {
+      return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider)
+    }
+    catch (error) {
+      console.log(error)
+    }
+    return null;
+  }
+  
   public async resetPassword(email: string) {
     let success: boolean;
     await this.auth.sendPasswordResetEmail(email)
@@ -119,3 +129,5 @@ export class AuthService {
     return await fileRef.ref.getDownloadURL();
   }
 }
+
+
