@@ -76,6 +76,7 @@ export class AlojamientosComponent implements OnInit, OnDestroy {
   }
   navigateToReports(accommodation: Accommodation): void {
     this.router.navigate(['/admin', 'gestion-reportes', String(accommodation.id)]);
+  }
 
   displayDialog(key: string): void {
     this.dialog.open(DeleteAccommodationDialogComponent, {
