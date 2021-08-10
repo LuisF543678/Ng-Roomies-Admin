@@ -50,24 +50,8 @@ export class PeticionesarrendamientoComponent implements OnInit {
       this.loader = true;
     }, 1000);
     this.fetchAccommodation();
-    /* 
-        this.messageform = this.fb.group({
-          'reason': new FormControl('', [Validators.required]),
-        });
-     */
-    // this.mostrarAlojamientos();
   }
 
-// mostrarAlojamientos() {
-//   this.peticiones.getAlojamientos().snapshotChanges().subscribe(item => {
-//     this.alojamientoList=[];
-//     item.forEach(element =>{
-//       let x = element.payload.toJSON();
-//       x["$keyRegistro"] = element.key;
-//       this.alojamientoList.push(x as Accommodation);
-//     });
-//   }); 
-// }
   
   signOff() {
     localStorage.removeItem('user');
